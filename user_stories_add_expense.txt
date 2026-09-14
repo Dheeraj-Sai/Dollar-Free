@@ -1,0 +1,25 @@
+Feature: Add an Expense
+
+User story
+As a Dollar Free user,
+I want to add an expense with a category and amount,
+so that I can keep an accurate record of my spending.
+
+Acceptance criteria
+1. The application asks for an expense category/type and amount.
+2. The user can choose one of these categories: Food, Transport, Housing,
+   Utilities, Health, Education, Entertainment, or Other.
+3. A valid expense has a recognized category and a numeric amount greater than
+   zero.
+4. When a valid expense is entered, the application creates and stores it and
+   confirms that it was added successfully.
+5. The stored expense retains its category and amount.
+6. A negative or zero amount is rejected with a clear error message.
+7. A non-numeric or missing amount is rejected with a clear error message.
+8. A missing or unsupported category is rejected with a clear error message.
+
+Example
+Add Expense
+Expense type: Food
+Amount: 15.50
+Expense added successfully!

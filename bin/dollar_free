@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative "../lib/expense_manager"
+
+manager = ExpenseManager.new
+
+loop do
+  puts "\nDollar Free"
+  puts "1. Add an expense"
+  puts "2. Exit"
+  print "Choose an option: "
+
+  case $stdin.gets&.strip
+  when "1"
+    manager.prompt_for_expense
+  when "2", nil
+    puts "Goodbye!"
+    break
+  else
+    puts "Invalid option. Please enter 1 or 2."
+  end
+end
