@@ -2,4 +2,4 @@
 
 require "minitest/autorun"
 require "stringio"
-require_relative "../lib/expense_manager"
+require_relative "../lib/main_menu"

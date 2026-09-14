@@ -23,3 +23,22 @@ Add Expense
 Expense type: Food
 Amount: 15.50
 Expense added successfully!
+
+
+Feature: Navigate through the Main Menu
+
+User story
+As a Dollar Free user,
+I want to navigate from a main menu when I open the application,
+so that I can access the application's features from one clear starting point.
+
+Acceptance criteria
+1. When the application starts, it displays the Dollar Free main menu.
+2. The menu displays options for Add Expense, View Expenses, Daily Report,
+   Financial Health, Spending Graph, Savings Goal, Achievements, and Exit.
+3. Selecting option 1 opens the Add Expense workflow.
+4. Selecting options 2 through 7 opens the corresponding section. Until those
+   features are implemented, the application clearly says that the section is
+   not available yet and returns to the menu.
+5. Selecting option 8 exits the application with a goodbye message.
+6. Entering an invalid option displays a useful error and returns to the menu.
