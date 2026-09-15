@@ -7,6 +7,7 @@ end
 
 require "minitest/autorun"
 require "stringio"
+require "tempfile"
 require_relative "../lib/main_menu"
 
 Minitest.after_run do

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative "expense_manager"
 
 class MainMenu
@@ -34,9 +32,9 @@ class MainMenu
     when "1"
       @expense_manager.prompt_for_expense(input: @input, output: @output)
     when "2"
-      @output.puts "View Expenses is not available yet."
+      @expense_manager.display_expenses(output: @output)
     when "3"
-      @output.puts "Daily Report is not available yet."
+      @expense_manager.generate_daily_report(output: @output)
     when "4"
       @output.puts "Financial Health is not available yet."
     when "5"
@@ -46,12 +44,11 @@ class MainMenu
     when "7"
       @output.puts "Achievements is not available yet."
     when "8", ""
-      @output.puts "Goodbye!"
+      @output.puts "Expense Tracker Signing OFF!!!"
       return false
     else
       @output.puts "Invalid option. Please enter a number from 1 to 8."
     end
-
     true
   end
 end
