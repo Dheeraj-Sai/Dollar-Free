@@ -1,44 +1,40 @@
 # Planning Notes
 
-## App idea
+Team: Purna Vasanth Repalle and Dheeraj Sai Madhalam
 
-The team is building Dollar Free, a terminal expense-tracking app aimed at
-students who want a simple way to record spending and build better money
-habits.
+## What we are building
 
-## Essential features
+Dollar Free, a terminal app for tracking expenses. Aimed at students who want
+something simple to record what they spend.
 
-- Main menu
-- Add expense
-- View expenses
-- Validating for invalid user input
+## Essential
 
-## Optional features
+- main menu
+- add an expense
+- view the expenses
+- handle bad input properly
 
-- Daily report
-- Financial health check
-- Spending graph
-- Savings goal
-- Achievements
+## Optional
 
-## How work will be done
+- daily report
+- financial health
+- spending graph
+- savings goal
+- achievements
 
-Features will be split into stories and will be assigned equally to each other.
-Both teammates will code their respective story points and also review the code.
-Before merging the code, the team will run the tests and update the user story and backlog.
+The daily report ended up getting done even though we listed it as optional,
+since it was easy once the dates were being saved.
 
-## Definition of done
+## How we work
 
-A story is done when:
+Split the work into small stories, one branch per feature. One person types
+while the other reads along and checks the design. Run the tests and update
+the story and backlog before merging.
 
-- The feature can be used from the terminal.
-- Valid and invalid input have been tested.
-- The tests pass.
-- The user story and backlog have been updated.
-- The change has a clear Git commit message.
+## Done means
 
-## Team details
-
-Team Member Names
-- Purna Vasanth Repalle
-- Dheeraj Sai Madhalam
+- the feature works from the terminal
+- both good and bad input have been tested
+- the tests pass
+- the story and backlog are updated
+- the commit message says what changed

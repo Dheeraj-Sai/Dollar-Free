@@ -1,81 +1,58 @@
 # Pairing Log
 
-This file records the pair-programming sessions for Dollar Free. The team is
-Purna Vasanth Repalle and Dheeraj Sai Madhalam.
+Team: Purna Vasanth Repalle and Dheeraj Sai Madhalam
 
-## Session 1 — 2026-09-14
+## Session 1 - 14 Sep 2026
 
-Driver: Dheeraj Sai Madhalam
-Navigator: Purna Vasanth Repalle
+Driver: Dheeraj
+Navigator: Vasanth
 
-Work completed:
+- set up bin, lib and test folders
+- built the main menu and the 8 options
+- built Add Expense with the Expense and ExpenseManager classes
+- added the checks for category and amount
 
-- Set up the project folders: `bin`, `lib`, and `test`.
-- Built the main menu and the eight options.
-- Built Add Expense with the `Expense` and `ExpenseManager` classes.
-- Added the checks for the category and the amount.
+We decided to pass input and output into the classes instead of printing
+directly, so the tests could run without anyone typing. Also picked BigDecimal
+for the amounts because money should not drift.
 
-Notes:
+## Session 2 - 14 Sep 2026
 
-- We decided to pass the input and the output into the classes instead of
-  printing directly. This was so the tests could give fake input and read the
-  output without a person typing anything.
-- We chose `BigDecimal` for the amount instead of a normal decimal number,
-  because money needs to stay exact.
+Driver: Dheeraj
+Navigator: Vasanth
 
-## Session 2 — 2026-09-14
+- wrote the user stories, design and planning notes
+- added the acceptance tests that run the whole app from the menu
+- added the coverage report
 
-Driver: Dheeraj Sai Madhalam
-Navigator: Purna Vasanth Repalle
+Agreed that a story is not done until the tests pass and the documents are
+updated in the same change.
 
-Work completed:
+## Session 3 - 14 Sep 2026
 
-- Wrote the user stories and the design and planning notes.
-- Added the acceptance tests that run the whole app from the menu.
-- Added the coverage report.
+Driver: Vasanth
+Navigator: Dheeraj
 
-Notes:
+- built View Expenses and the Daily Report
+- moved from keeping expenses in a list to saving them in JSON
+- gave ExpenseManager a file path setting so tests use a temp file
 
-- We agreed that a story is only done when the tests pass and the documents
-  have been updated in the same change.
+Argued a bit about whether View Expenses should read the file directly. Went
+with reading the array so there is only one answer while the app is running.
 
-## Session 3 — 2026-09-14
+Also found that catching too many errors when reading the file was risky. A
+broken file looked like an empty list and the next expense would have wiped
+the real ones. Changed it to stop with an error instead.
 
-Driver: Purna Vasanth Repalle
-Navigator: Dheeraj Sai Madhalam
+## Session 4 - 15 Sep 2026
 
-Work completed:
+Driver: Vasanth
+Navigator: Dheeraj
 
-- Built View Expenses and the Daily Report.
-- Changed the app to save expenses in `data/expenses.json` instead of losing
-  them when the app closed.
-- Gave `ExpenseManager` a file path setting, so the tests use a temporary file.
+- joined the two branches and fixed the conflicts
+- updated the stories, backlog, design notes and README to match the app
+- wrote the retrospective
 
-Notes:
-
-- We talked about whether View Expenses should read the file directly. We
-  decided it should read the array instead, so there is only one answer to
-  "what are my expenses" while the app is running.
-- We found that catching too many errors while reading the file was dangerous.
-  A damaged file looked like an empty list, and the next expense would have
-  replaced the real records. We changed it to stop with an error.
-
-## Session 4 — 2026-09-15
-
-Driver: Purna Vasanth Repalle
-Navigator: Dheeraj Sai Madhalam
-
-Work completed:
-
-- Joined the two branches together and fixed the conflicts in the menu, the
-  expense manager, the tests, and the README.
-- Updated the user stories, the backlog, the design notes, and the README so
-  they matched the working app.
-- Wrote the retrospective.
-
-Notes:
-
-- The conflicts were caused by both of us changing the same files at the same
-  time. Next time we will bring the main branch into our own branch earlier.
-- We kept the version of the amount check from the main branch, because it
-  gave a clearer message when someone typed something like "5.".
+The conflicts happened because we both changed the same files at the same
+time. Next time we pull main into our branch earlier. We kept the amount check
+from main since it gave a clearer message for something like "5.".
