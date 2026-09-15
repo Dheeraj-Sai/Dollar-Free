@@ -14,6 +14,9 @@ Right now, the app has a main menu and the Add Expense feature.
 - The category has to be one of the categories in the program.
 - If the user enters a wrong menu number, the app shows an error message.
 
+The main features planned for the project are Add Expense, View Expenses,
+Daily Report, Financial Health, Spending Graph, Savings Goal, and Achievements.
+
 The other menu options are there already, but they are not built yet. They
 will say that the feature is not available yet.
 
@@ -100,6 +103,20 @@ folder using:
 ruby -Ilib:test -e 'Dir["test/test_*.rb"].sort.each { |file| require_relative file }'
 ```
 
+There are unit tests for the expense and menu classes, plus acceptance tests
+that run through the menu like a user would.
+
+### Coverage report
+
+To run the tests and create a simple line-coverage report, use:
+
+```bash
+COVERAGE=true ruby -Ilib:test -e 'Dir["test/test_*.rb"].sort.each { |file| require_relative file }'
+```
+
+The report is created at `coverage/coverage.txt`. The `coverage` folder is
+generated automatically and is not committed to Git.
+
 ## Files in the project
 
 ```text
@@ -119,6 +136,19 @@ user_stories_add_expense.txt  user stories and acceptance criteria
 - Spending graph
 - Savings goal
 - Achievements
+
+## Team members
+
+- Add team member names here.
+
+## Extra project documents
+
+- `docs/user_stories.md` has the stories and acceptance criteria.
+- `docs/design.md` explains the current design.
+- `docs/backlog.md` shows done and planned work.
+- `docs/planning.md` has the initial plan.
+- `docs/pairing_log.md` and `docs/retrospective.md` need to be completed with
+  the team's real sessions and reflections.
 
 ## License
 
