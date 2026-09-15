@@ -4,11 +4,19 @@ require_relative "test_helper"
 
 class MainMenuTest < Minitest::Test
   class ExpenseManagerSpy
-    attr_reader :input, :output
+    attr_reader :input, :output, :display_output, :report_output
 
     def prompt_for_expense(input:, output:)
       @input = input
       @output = output
+    end
+
+    def display_expenses(output:)
+      @display_output = output
+    end
+
+    def generate_daily_report(output:)
+      @report_output = output
     end
   end
 
@@ -35,9 +43,17 @@ class MainMenuTest < Minitest::Test
     assert_same @output, @expense_manager.output
   end
 
+  def test_option_two_opens_view_expenses
+    assert @menu.process_selection("2")
+    assert_same @output, @expense_manager.display_output
+  end
+
+  def test_option_three_opens_daily_report
+    assert @menu.process_selection("3")
+    assert_same @output, @expense_manager.report_output
+  end
+
   {
-    "2" => "View Expenses",
-    "3" => "Daily Report",
     "4" => "Financial Health",
     "5" => "Spending Graph",
     "6" => "Savings Goal",
@@ -51,12 +67,12 @@ class MainMenuTest < Minitest::Test
 
   def test_option_eight_exits
     refute @menu.process_selection("8")
-    assert_includes @output.string, "Goodbye!"
+    assert_includes @output.string, "Expense Tracker Signing OFF!!!"
   end
 
   def test_blank_input_exits
     refute @menu.process_selection(nil)
-    assert_includes @output.string, "Goodbye!"
+    assert_includes @output.string, "Expense Tracker Signing OFF!!!"
   end
 
   def test_rejects_an_invalid_option
