@@ -42,3 +42,48 @@ Acceptance criteria
    not available yet and returns to the menu.
 5. Selecting option 8 exits the application with a goodbye message.
 6. Entering an invalid option displays a useful error and returns to the menu.
+
+
+Feature: View Expenses
+
+User story
+As a Dollar Free user,
+I want to view the expenses I have recorded,
+so that I can review where my money has gone.
+
+Acceptance criteria
+1. Selecting option 2 lists the recorded expenses.
+2. The list includes expenses added in earlier sessions, not only the current
+   one.
+3. Each expense is numbered and shows its date, category, and amount.
+4. When no expenses have been recorded, a clear message is shown instead of an
+   empty list.
+5. After the list is shown, the application returns to the main menu.
+
+Example
+Your Expenses
+1. 2026-09-15 - Food - 15.5
+2. 2026-09-14 - Housing - 900.0
+
+
+Feature: Generate a Daily Report
+
+User story
+As a Dollar Free user,
+I want to see a report of what I spent today,
+so that I can tell whether I am overspending on a given day.
+
+Acceptance criteria
+1. Selecting option 3 shows the report for the current day.
+2. The heading states which day the report covers.
+3. Only expenses recorded on that day are listed, each with its category and
+   amount.
+4. The report shows the total spent that day.
+5. When nothing was spent that day, a clear message is shown and no total.
+6. After the report is shown, the application returns to the main menu.
+
+Example
+Daily Report for 2026-09-15
+1. Food - 15.5
+2. Transport - 42.75
+Total spent: 58.25
