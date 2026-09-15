@@ -1,8 +1,5 @@
-# frozen_string_literal: true
-
 require_relative "expense_manager"
 
-# Coordinates navigation between Dollar Free's terminal screens.
 class MainMenu
   MENU_ITEMS = {
     "1" => "Add Expense",
@@ -34,20 +31,22 @@ class MainMenu
     @output.print "Choose an option: "
   end
 
-  # Returns false only when the user exits the application.
   def process_selection(selection)
     case selection.to_s.strip
     when "1"
       @expense_manager.prompt_for_expense(input: @input, output: @output)
-    when "2", "3", "4", "5", "6", "7"
+    when "2"
+      @expense_manager.display_expenses(output: @output)
+    when "3"
+      @expense_manager.generate_daily_report(output: @output)
+    when "4", "5", "6", "7"
       show_unavailable_section(MENU_ITEMS.fetch(selection.to_s.strip))
     when "8", ""
-      @output.puts "Goodbye!"
+      @output.puts "Expense Tracker Signing OFF!!!"
       return false
     else
       @output.puts "Invalid option. Please enter a number from 1 to 8."
     end
-
     true
   end
 
