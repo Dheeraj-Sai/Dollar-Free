@@ -2,19 +2,7 @@
 
 require_relative "expense_manager"
 
-# Coordinates navigation between Dollar Free's terminal screens.
 class MainMenu
-  MENU_ITEMS = {
-    "1" => "Add Expense",
-    "2" => "View Expenses",
-    "3" => "Daily Report",
-    "4" => "Financial Health",
-    "5" => "Spending Graph",
-    "6" => "Savings Goal",
-    "7" => "Achievements",
-    "8" => "Exit"
-  }.freeze
-
   def initialize(input: $stdin, output: $stdout, expense_manager: ExpenseManager.new)
     @input = input
     @output = output
@@ -30,17 +18,33 @@ class MainMenu
 
   def display_menu
     @output.puts "\n====== Dollar Free ======"
-    MENU_ITEMS.each { |number, label| @output.puts "#{number}. #{label}" }
+    @output.puts "1. Add Expense"
+    @output.puts "2. View Expenses"
+    @output.puts "3. Daily Report"
+    @output.puts "4. Financial Health"
+    @output.puts "5. Spending Graph"
+    @output.puts "6. Savings Goal"
+    @output.puts "7. Achievements"
+    @output.puts "8. Exit"
     @output.print "Choose an option: "
   end
 
-  # Returns false only when the user exits the application.
   def process_selection(selection)
     case selection.to_s.strip
     when "1"
       @expense_manager.prompt_for_expense(input: @input, output: @output)
-    when "2", "3", "4", "5", "6", "7"
-      show_unavailable_section(MENU_ITEMS.fetch(selection.to_s.strip))
+    when "2"
+      @output.puts "View Expenses is not available yet."
+    when "3"
+      @output.puts "Daily Report is not available yet."
+    when "4"
+      @output.puts "Financial Health is not available yet."
+    when "5"
+      @output.puts "Spending Graph is not available yet."
+    when "6"
+      @output.puts "Savings Goal is not available yet."
+    when "7"
+      @output.puts "Achievements is not available yet."
     when "8", ""
       @output.puts "Goodbye!"
       return false
@@ -49,11 +53,5 @@ class MainMenu
     end
 
     true
-  end
-
-  private
-
-  def show_unavailable_section(section_name)
-    @output.puts "#{section_name} is not available yet."
   end
 end

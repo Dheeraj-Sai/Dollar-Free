@@ -3,7 +3,6 @@
 require "bigdecimal"
 require_relative "expense"
 
-# Creates and retains the expenses entered during the application's lifetime.
 class ExpenseManager
   DEFAULT_CATEGORIES = ["Food", "Transport", "Housing", "Utilities", "Health", "Education", "Entertainment", "Other"].freeze
 
@@ -23,8 +22,6 @@ class ExpenseManager
     expense
   end
 
-  # Terminal-facing workflow. Input and output are injectable to keep the
-  # interaction usable in a CLI and straightforward to test.
   def prompt_for_expense(input: $stdin, output: $stdout)
     output.puts "Add Expense"
     output.puts "Available categories: #{categories.join(', ')}"
@@ -59,13 +56,14 @@ class ExpenseManager
     value = amount.to_s.strip
     raise ArgumentError, "Expense amount is required." if value.empty?
 
-    parsed_amount = BigDecimal(value)
+    begin
+      parsed_amount = BigDecimal(value)
+    rescue ArgumentError
+      raise ArgumentError, "Expense amount must be a valid number."
+    end
+
     raise ArgumentError, "Expense amount must be greater than zero." unless parsed_amount.positive?
 
     parsed_amount
-  rescue ArgumentError
-    raise ArgumentError, "Expense amount must be a valid number." unless value.match?(/\A[+-]?(?:\d+(?:\.\d*)?|\.\d+)\z/)
-
-    raise
   end
 end

@@ -1,65 +1,53 @@
-# Dollar Free 💰
+# Dollar Free
 
-Dollar Free is a Ruby terminal application for recording expenses and building
-healthier spending habits. It is being developed incrementally through small,
-tested user stories.
+Dollar Free is a small Ruby terminal project for keeping track of expenses.
+The main idea is that a user can enter expenses and later use the app to see
+how they are spending money.
 
-## Current functionality
+## What is done so far
 
-The application currently provides:
+Right now, the app has a main menu and the Add Expense feature.
 
-- A main menu displayed when the application starts.
-- An **Add Expense** workflow.
-- Expense categories and amount validation.
-- In-memory expense storage for the current application session.
-- Helpful messages for invalid menu choices, categories, and amounts.
+- The main menu is shown when the program starts.
+- Option 1 lets the user add an expense.
+- The amount has to be a number bigger than 0.
+- The category has to be one of the categories in the program.
+- If the user enters a wrong menu number, the app shows an error message.
 
-The remaining menu sections are visible so users can see the planned
-application structure. They display a clear "not available yet" message until
-their feature stories are implemented.
+The other menu options are there already, but they are not built yet. They
+will say that the feature is not available yet.
 
-## Requirements
+## How to run it
 
-- Ruby (no external gems are required)
-
-Check that Ruby is installed:
+Make sure Ruby is installed first:
 
 ```bash
 ruby --version
 ```
 
-## Getting started
-
-Clone the repository and move into its directory:
-
-```bash
-git clone <repository-url>
-cd Dollar-Free
-```
-
-If you already have the project locally, open Terminal and move to the project
-folder instead:
+Go inside the project folder:
 
 ```bash
 cd /Users/dheeraj/Documents/MCS/SWE/projects/Dollar-Free
 ```
 
-## Run the application
-
-Start Dollar Free with:
+Then start the program:
 
 ```bash
 ./bin/dollar_free
 ```
 
-If the command is not executable on your computer, run:
+If that does not work because of permissions, run this once:
 
 ```bash
 chmod +x bin/dollar_free
-./bin/dollar_free
 ```
 
-The application opens at the main menu:
+Then run `./bin/dollar_free` again.
+
+## Main menu
+
+When the app starts, this is the menu:
 
 ```text
 ====== Dollar Free ======
@@ -71,26 +59,25 @@ The application opens at the main menu:
 6. Savings Goal
 7. Achievements
 8. Exit
-Choose an option:
 ```
 
-Enter the number of the feature you want to use. Enter `8` to exit.
+Type a number and press Enter. For now, `1` and `8` are the useful options.
 
-## Add an expense
+## Adding an expense
 
-Choose `1` from the main menu. The application asks for a category and an
-amount:
+Choose option `1`. The program asks for the expense type and amount.
+
+Example:
 
 ```text
 Choose an option: 1
 Add Expense
-Available categories: Food, Transport, Housing, Utilities, Health, Education, Entertainment, Other
 Expense type: Food
 Amount: 15.50
 Expense added successfully!
 ```
 
-### Valid categories
+These are the categories that can be used:
 
 - Food
 - Transport
@@ -101,68 +88,38 @@ Expense added successfully!
 - Entertainment
 - Other
 
-Categories are case-insensitive. For example, entering `food` stores the
-category as `Food`.
+The amount must be greater than zero. For example, `0`, `-10`, or `ten` are
+not accepted. Expenses are only saved while the program is open at the moment.
 
-### Amount rules
+## Tests
 
-An amount must be a number greater than zero. The application rejects:
-
-- Zero amounts
-- Negative amounts
-- Text instead of a number
-- Missing amounts
-
-For example:
-
-```text
-Expense type: Food
-Amount: -5
-Unable to add expense: Expense amount must be greater than zero.
-```
-
-Expenses are stored only while the application is running. Saving expenses to
-a file or database is a future enhancement.
-
-## Run the tests
-
-The project uses Ruby's built-in Minitest framework. Run all tests from the
-project root:
+The tests use Minitest, which comes with Ruby. Run them from the project
+folder using:
 
 ```bash
 ruby -Ilib:test -e 'Dir["test/test_*.rb"].sort.each { |file| require_relative file }'
 ```
 
-## Project structure
+## Files in the project
 
 ```text
-bin/
-  dollar_free          Application entry point
-lib/
-  expense.rb           Expense data object
-  expense_manager.rb   Expense creation, validation, and session storage
-  main_menu.rb         Menu display and navigation
-test/
-  test_expense.rb
-  test_expense_manager.rb
-  test_main_menu.rb
-user_stories_add_expense.txt  Implemented feature stories and acceptance criteria
+bin/dollar_free          starts the program
+lib/expense.rb           stores one expense
+lib/expense_manager.rb   checks and adds expenses
+lib/main_menu.rb         shows the main menu
+test/                    tests for the code
+user_stories_add_expense.txt  user stories and acceptance criteria
 ```
 
-## Development approach
+## Features to add later
 
-Each feature is implemented as a focused user story with automated tests. The
-main menu already provides navigation points for planned features:
-
-1. View Expenses
-2. Daily Report
-3. Financial Health
-4. Spending Graph
-5. Savings Goal
-6. Achievements
-
-These options will become functional as their respective stories are added.
+- View expenses
+- Daily report
+- Financial health
+- Spending graph
+- Savings goal
+- Achievements
 
 ## License
 
-This project is licensed under the terms in [LICENSE](LICENSE).
+See the [LICENSE](LICENSE) file.

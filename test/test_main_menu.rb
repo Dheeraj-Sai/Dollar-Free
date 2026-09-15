@@ -35,18 +35,34 @@ class MainMenuTest < Minitest::Test
     assert_same @output, @expense_manager.output
   end
 
-  {
-    "2" => "View Expenses",
-    "3" => "Daily Report",
-    "4" => "Financial Health",
-    "5" => "Spending Graph",
-    "6" => "Savings Goal",
-    "7" => "Achievements"
-  }.each do |selection, section_name|
-    define_method("test_option_#{selection}_opens_#{section_name.downcase.tr(' ', '_')}_section") do
-      assert @menu.process_selection(selection)
-      assert_includes @output.string, "#{section_name} is not available yet."
-    end
+  def test_option_two_shows_view_expenses_message
+    assert @menu.process_selection("2")
+    assert_includes @output.string, "View Expenses is not available yet."
+  end
+
+  def test_option_three_shows_daily_report_message
+    assert @menu.process_selection("3")
+    assert_includes @output.string, "Daily Report is not available yet."
+  end
+
+  def test_option_four_shows_financial_health_message
+    assert @menu.process_selection("4")
+    assert_includes @output.string, "Financial Health is not available yet."
+  end
+
+  def test_option_five_shows_spending_graph_message
+    assert @menu.process_selection("5")
+    assert_includes @output.string, "Spending Graph is not available yet."
+  end
+
+  def test_option_six_shows_savings_goal_message
+    assert @menu.process_selection("6")
+    assert_includes @output.string, "Savings Goal is not available yet."
+  end
+
+  def test_option_seven_shows_achievements_message
+    assert @menu.process_selection("7")
+    assert_includes @output.string, "Achievements is not available yet."
   end
 
   def test_option_eight_exits
