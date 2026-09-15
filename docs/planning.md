@@ -11,7 +11,7 @@ habits.
 - Main menu
 - Add expense
 - View expenses
-- Validation for invalid user input
+- Validating for invalid user input
 
 ## Optional features
 
@@ -23,9 +23,9 @@ habits.
 
 ## How work will be done
 
-Features should be split into small stories. One person can drive while the
-other person reviews the code and talks through the design. Before merging a
-feature, the team should run the tests and update the user story and backlog.
+Features will be split into stories and will be assigned equally to each other.
+Both teammates will code their respective story points and also review the code.
+Before merging the code, the team will run the tests and update the user story and backlog.
 
 ## Definition of done
 
@@ -39,4 +39,6 @@ A story is done when:
 
 ## Team details
 
-Add the names of the team members here after the team agrees on the plan.
+Team Member Names
+- Purna Vasanth Repalle
+- Dheeraj Sai Madhalam
