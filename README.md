@@ -36,7 +36,15 @@ ruby --version
 Go inside the project folder:
 
 ```bash
-cd /Users/dheeraj/Documents/MCS/SWE/projects/Dollar-Free
+git clone https://github.com/Dheeraj-Sai/Dollar-Free.git
+cd Dollar-Free
+```
+
+If you already have the project on your computer, just go to the folder where
+you saved it:
+
+```bash
+cd path/to/Dollar-Free
 ```
 
 Then start the program:
@@ -165,6 +173,24 @@ COVERAGE=true ruby -Ilib:test -e 'Dir["test/test_*.rb"].sort.each { |file| requi
 The report is created at `coverage/coverage.txt`. The `coverage` folder is
 generated automatically and is not committed to Git.
 
+## Checking the code style
+
+The project uses RuboCop to check that the code is written in a consistent
+style. Install it once:
+
+```bash
+gem install rubocop
+```
+
+Then check the whole project from the project folder:
+
+```bash
+rubocop
+```
+
+It should report no offenses. The rules are in `.rubocop.yml`, and every rule
+the team turned off has a comment saying why.
+
 ## Files in the project
 
 ```text
@@ -176,6 +202,7 @@ data/expenses.json       the saved expenses (not committed to Git)
 test/                    tests for the code
 docs/                    user stories, design, and planning notes
 Gemfile                  says which gems the project uses
+.rubocop.yml             the code style rules and why they were chosen
 user_stories_add_expense.txt  user stories and acceptance criteria
 ```
 
@@ -186,9 +213,25 @@ user_stories_add_expense.txt  user stories and acceptance criteria
 - Savings goal
 - Achievements
 
+## Known limitations
+
+- The expenses are kept in one JSON file on your computer. There is no
+  database, and there is no way to share expenses between two people.
+- The whole file is rewritten every time an expense is added. This is fine for
+  a few hundred expenses, but it would be slow for a very large file.
+- An expense cannot be edited or deleted after it is added.
+- The date of an expense is always the day it was entered. There is no way to
+  add an expense for an earlier day.
+- The Daily Report only covers today. There is no weekly or monthly report.
+- Financial Health, Spending Graph, Savings Goal, and Achievements are not
+  built yet. Those menu options say that the feature is not available.
+- If the saved file is damaged, the app stops with an error instead of opening.
+  This is on purpose, so that real records are not quietly replaced.
+
 ## Team members
 
-- Add team member names here.
+- Purna Vasanth Repalle
+- Dheeraj Sai Madhalam
 
 ## Extra project documents
 

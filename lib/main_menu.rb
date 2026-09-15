@@ -1,5 +1,7 @@
 require_relative "expense_manager"
 
+# Shows the menu and sends the user to the right feature. It does not do any
+# expense work itself, it only asks ExpenseManager to do it.
 class MainMenu
   def initialize(input: $stdin, output: $stdout, expense_manager: ExpenseManager.new)
     @input = input

@@ -24,12 +24,13 @@ Minitest.after_run do
 
     relevant_lines = line_counts.compact
     total_lines += relevant_lines.length
-    covered_lines += relevant_lines.count { |count| count.positive? }
+    covered_lines += relevant_lines.count(&:positive?)
   end
 
   percentage = total_lines.zero? ? 0 : (covered_lines.to_f / total_lines * 100).round(2)
   report_folder = File.join(project_root, "coverage")
   FileUtils.mkdir_p(report_folder)
-  File.write(File.join(report_folder, "coverage.txt"), "Line coverage: #{percentage}% (#{covered_lines}/#{total_lines})\n")
+  File.write(File.join(report_folder, "coverage.txt"),
+             "Line coverage: #{percentage}% (#{covered_lines}/#{total_lines})\n")
   puts "Coverage report written to coverage/coverage.txt: #{percentage}%"
 end

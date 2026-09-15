@@ -4,8 +4,11 @@ require "fileutils"
 require "json"
 require_relative "expense"
 
+# Holds the expenses and does the work on them: checking input, adding,
+# listing, reporting, and saving to and loading from the JSON file.
 class ExpenseManager
-  DEFAULT_CATEGORIES = ["Food", "Transport", "Housing", "Utilities", "Health", "Education", "Entertainment", "Other"].freeze
+  DEFAULT_CATEGORIES = %w[Food Transport Housing Utilities Health Education Entertainment
+                          Other].freeze
   DEFAULT_STORE_PATH = File.expand_path("../data/expenses.json", __dir__)
 
   attr_reader :expenses, :categories, :store_path
@@ -37,8 +40,8 @@ class ExpenseManager
     expense = add_expense(category: category, amount: amount)
     output.puts "Expense added successfully!"
     expense
-  rescue ArgumentError => error
-    output.puts "Unable to add expense: #{error.message}"
+  rescue ArgumentError => e
+    output.puts "Unable to add expense: #{e.message}"
     nil
   end
 
@@ -73,7 +76,7 @@ class ExpenseManager
       number = index + 1
       amount = expense.amount.to_s("F")
       output.puts "#{number}. #{expense.category} - #{amount}"
-      total = total + expense.amount
+      total += expense.amount
       index += 1
     end
     output.puts "Total spent: #{total.to_s('F')}"
@@ -86,9 +89,7 @@ class ExpenseManager
     index = 0
     while index < expenses.length
       expense = expenses[index]
-      if expense.date == date
-        matching.push(expense)
-      end
+      matching.push(expense) if expense.date == date
       index += 1
     end
     return matching
@@ -111,10 +112,12 @@ class ExpenseManager
   def validate_category(category)
     value = category.to_s.strip
     raise ArgumentError, "Expense category is required." if value.empty?
+
     matching_category = categories.find { |allowed| allowed.casecmp?(value) }
     unless matching_category
       raise ArgumentError, "Invalid expense category '#{value}'. Choose one of: #{categories.join(', ')}."
     end
+
     matching_category
   end
 
@@ -129,6 +132,7 @@ class ExpenseManager
     end
 
     raise ArgumentError, "Expense amount must be greater than zero." unless parsed_amount.positive?
+
     parsed_amount
   end
 end
