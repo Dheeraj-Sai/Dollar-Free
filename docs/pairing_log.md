@@ -56,3 +56,29 @@ Navigator: Dheeraj
 The conflicts happened because we both changed the same files at the same
 time. Next time we pull main into our branch earlier. We kept the amount check
 from main since it gave a clearer message for something like "5.".
+
+## Session 5 - 25 Sep 2026
+
+Driver: Dheeraj
+Navigator: Vasanth
+
+- built Savings Goals submenu with goal creation, daily amount calculation, and goal listing
+- added savings progress tracking to record saved amounts, remaining amounts, and completion percentage
+- added JSON persistence for savings goals in data/savings_goals.json
+- fixed submenu navigation to return to the main menu on blank input
+- added comprehensive unit, manager, and end-to-end integration tests
+- updated documentation, user stories, backlog, design notes, and pairing log
+
+## Session 6 - 25 Sep 2026
+
+Driver: Dheeraj
+Navigator: Vasanth
+
+- built Financial Health feature (FT05) with user budget setup and updating
+- integrated FinancialHealthManager with ExpenseManager to compute remaining budget and spent percentage
+- implemented 0-100 financial health score and status advice tiers
+- added JSON persistence for the budget in data/budget.json
+- wrote unit tests, manager tests, and end-to-end acceptance tests
+- updated documentation, user stories, backlog, design notes, and pairing log
+
+

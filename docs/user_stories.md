@@ -63,16 +63,43 @@ Acceptance criteria:
 - The report shows the total spent that day.
 - A clear message is shown if nothing was spent that day.
 
-## 6. Savings goal — To Do
+## 6. Savings goal — Done
 
-As a user, I want to set a savings goal so that I can work toward saving money.
+As a student, I want to set savings goals so that I know how much I need to
+save each day to reach my targets.
 
 Acceptance criteria:
 
-- I can enter a goal amount greater than zero.
-- The program shows whether my spending is within the goal.
+- Choosing option 6 opens the Savings Goal submenu.
+- I can enter a target amount and a whole number of days.
+- The app shows the daily amount I need to save, rounded up to the nearest
+  cent.
+- I can add and view more than one goal.
+- I can manually add savings progress to a selected goal.
+- Each goal shows the amount saved, remaining amount, and percentage complete.
+- Goals and their progress are saved and loaded when the app restarts.
+- Invalid goal amounts, days, progress amounts, goal numbers, and submenu
+  choices show useful error messages.
 
-## 7. Spending graph — To Do (Optional)
+## 7. Financial health — Done (Optional)
+
+As a student, I want to view my financial health so that I can understand how
+much money I have spent and how much I have remaining in my budget.
+
+Acceptance criteria:
+
+- Choosing option 4 opens the Financial Health submenu.
+- I can set or update a total budget greater than zero.
+- The budget is saved to a file and loaded again when the program restarts.
+- If no budget has been set yet, the app prompts me to enter one.
+- The report compares my budget with total expenses and displays the remaining
+  budget (or exceeded amount), health score (0 to 100), status, and advice.
+- The app indicates when I am within budget, when I have reached my exact
+  budget, or when I have exceeded it.
+- Invalid budget amounts (blank, text, zero, negative) show useful errors.
+- I can return to the main menu from the Financial Health submenu.
+
+## 8. Spending graph — To Do (Optional)
 
 As a user, I want to see spending by category in a terminal graph so that I
 can quickly compare where my money goes.
@@ -82,7 +109,7 @@ Acceptance criteria:
 - The graph uses the expenses in the current session.
 - Each category has a readable label and value.
 
-## 8. Expenses are kept after closing the app — Done (Essential)
+## 9. Expenses are kept after closing the app — Done (Essential)
 
 As a user, I want my expenses to still be there when I reopen Dollar Free so
 that I do not lose my records every time I close it.

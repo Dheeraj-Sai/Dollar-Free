@@ -1,0 +1,22 @@
+Feature: View Financial Health
+
+User story
+As a student, I want to view my financial health so that I can understand how
+much money I have spent and how much I have remaining in my budget.
+
+Acceptance criteria
+1. Choosing option 4 opens the Financial Health submenu.
+2. The user can enter and update a budget amount greater than zero.
+3. The budget is saved to data/budget.json and reloaded when the app restarts.
+4. If no budget has been set yet, the app prompts the user to enter one.
+5. The report compares total expenses with the budget and displays the budget,
+   total spent, remaining budget, health score (0 to 100), status, and advice.
+6. The app appropriately indicates when spending is within budget, when the
+   budget has been reached (100%), or when the budget has been exceeded (>100%).
+7. When the budget is exceeded, the report displays the negative remaining
+   amount and explicitly shows the amount by which it was exceeded.
+8. The health score ranges from 0 to 100 based on remaining budget proportion.
+9. Invalid budget inputs (blank, non-numeric, zero, negative) and invalid menu
+   choices show useful error messages without crashing.
+10. The user can return to the main menu from the Financial Health submenu by
+    entering 3 or pressing Enter.

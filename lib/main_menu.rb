@@ -1,12 +1,21 @@
 require_relative "expense_manager"
+require_relative "financial_health_manager"
+require_relative "savings_goal_manager"
 
 # Shows the menu and sends the user to the right feature. It does not do any
 # expense work itself, it only asks ExpenseManager to do it.
 class MainMenu
-  def initialize(input: $stdin, output: $stdout, expense_manager: ExpenseManager.new)
+  def initialize(input: $stdin, output: $stdout, expense_manager: ExpenseManager.new,
+                 savings_goal_manager: SavingsGoalManager.new,
+                 financial_health_manager: FinancialHealthManager.new(
+                   expense_manager: expense_manager,
+                   savings_goal_manager: savings_goal_manager
+                 ))
     @input = input
     @output = output
     @expense_manager = expense_manager
+    @savings_goal_manager = savings_goal_manager
+    @financial_health_manager = financial_health_manager
   end
 
   def run
@@ -38,11 +47,11 @@ class MainMenu
     when "3"
       @expense_manager.generate_daily_report(output: @output)
     when "4"
-      @output.puts "Financial Health is not available yet."
+      @financial_health_manager.financial_health_menu(input: @input, output: @output)
     when "5"
       @expense_manager.prompt_for_spending_graph(input: @input, output: @output)
     when "6"
-      @output.puts "Savings Goal is not available yet."
+      @savings_goal_manager.savings_goal_menu(input: @input, output: @output)
     when "7"
       @output.puts "Achievements is not available yet."
     when "8", ""

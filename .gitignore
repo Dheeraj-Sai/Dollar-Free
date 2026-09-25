@@ -1,2 +1,4 @@
 coverage/
 data/expenses.json
+data/savings_goals.json
+data/budget.json

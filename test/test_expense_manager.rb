@@ -131,6 +131,7 @@ class ExpenseManagerTest < Minitest::Test
 
   def test_spending_graph_shows_a_bar_for_each_category_with_spending
     @manager.add_expense(category: "Food", amount: "50")
+    @manager.add_expense(category: "Food", amount: "20")
     @manager.add_expense(category: "Transport", amount: "120")
     output = StringIO.new
 
