@@ -49,7 +49,7 @@ class MainMenu
     when "4"
       @financial_health_manager.financial_health_menu(input: @input, output: @output)
     when "5"
-      @output.puts "Spending Graph is not available yet."
+      @expense_manager.prompt_for_spending_graph(input: @input, output: @output)
     when "6"
       @savings_goal_manager.savings_goal_menu(input: @input, output: @output)
     when "7"

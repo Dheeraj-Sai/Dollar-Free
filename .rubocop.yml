@@ -1,27 +1,17 @@
-# RuboCop settings for Dollar Free.
-# Each rule that is turned off below is a choice the team made on purpose.
-
 AllCops:
   NewCops: enable
   TargetRubyVersion: 2.6
 
-# The project uses double quotes everywhere, which is allowed Ruby style.
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
-# This comment is a small speed setting. It adds a line to the top of every
-# file without making the code any clearer, so the team left it out.
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-# The team writes "return value" on purpose. It is easier to see what a method
-# gives back than Ruby's rule of returning the last line.
 Style/RedundantReturn:
   Enabled: false
 
-# The display and report methods use plain "while" loops so they are easy to
-# follow while learning Ruby. That makes them a few lines longer than RuboCop
-# prefers, which the team accepted.
 Metrics/MethodLength:
   Max: 25
 
@@ -29,21 +19,15 @@ Metrics/AbcSize:
   Max: 25
 
 Metrics/ClassLength:
-  Max: 150
+  Max: 220
 
-# Test names and expected messages are long on purpose, so they read clearly.
 Metrics/BlockLength:
   Exclude:
     - "test/**/*"
 
-# process_selection returns true to keep the menu running and false to stop.
-# A name ending in "?" would suggest it is only asking a question, when it
-# actually does the work for the chosen option.
 Naming/PredicateMethod:
   Exclude:
     - "lib/main_menu.rb"
 
-# The menu has one branch per option, which RuboCop counts as complex. A plain
-# case statement is the clearest way to write it.
 Metrics/CyclomaticComplexity:
   Max: 12

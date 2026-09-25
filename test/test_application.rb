@@ -55,6 +55,18 @@ class ApplicationTest < Minitest::Test
     assert_includes output.string, "Expense Tracker Signing OFF!!!"
   end
 
+  def test_user_can_view_the_spending_graph_from_the_main_menu
+    today = Date.today.strftime("%m/%d/%Y")
+    input = StringIO.new("1\nFood\n15.50\n5\n#{today}\n8\n")
+    output = StringIO.new
+
+    new_menu(input: input, output: output).run
+
+    assert_includes output.string, "Spending Graph"
+    assert_includes output.string, "Food"
+    assert_includes output.string, "Expense Tracker Signing OFF!!!"
+  end
+
   def test_user_can_add_and_view_multiple_savings_goals_from_the_main_menu
     input = StringIO.new("6\n1\n300\n30\n1\n100\n3\n2\n4\n8\n")
     output = StringIO.new

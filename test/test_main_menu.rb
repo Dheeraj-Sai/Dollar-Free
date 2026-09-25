@@ -4,7 +4,7 @@ require_relative "test_helper"
 
 class MainMenuTest < Minitest::Test
   class ExpenseManagerSpy
-    attr_reader :input, :output, :display_output, :report_output
+    attr_reader :input, :output, :display_output, :report_output, :graph_input, :graph_output
 
     def prompt_for_expense(input:, output:)
       @input = input
@@ -17,6 +17,11 @@ class MainMenuTest < Minitest::Test
 
     def generate_daily_report(output:)
       @report_output = output
+    end
+
+    def prompt_for_spending_graph(input:, output:)
+      @graph_input = input
+      @graph_output = output
     end
   end
 
@@ -85,9 +90,10 @@ class MainMenuTest < Minitest::Test
     assert_same @output, @financial_health_manager.output
   end
 
-  def test_option_five_shows_spending_graph_message
+  def test_option_five_opens_spending_graph
     assert @menu.process_selection("5")
-    assert_includes @output.string, "Spending Graph is not available yet."
+    assert_same @input, @expense_manager.graph_input
+    assert_same @output, @expense_manager.graph_output
   end
 
   def test_option_six_opens_savings_goal_menu
