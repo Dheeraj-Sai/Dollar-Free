@@ -81,7 +81,25 @@ Acceptance criteria:
 - Invalid goal amounts, days, progress amounts, goal numbers, and submenu
   choices show useful error messages.
 
-## 7. Spending graph — To Do (Optional)
+## 7. Financial health — Done (Optional)
+
+As a student, I want to view my financial health so that I can understand how
+much money I have spent and how much I have remaining in my budget.
+
+Acceptance criteria:
+
+- Choosing option 4 opens the Financial Health submenu.
+- I can set or update a total budget greater than zero.
+- The budget is saved to a file and loaded again when the program restarts.
+- If no budget has been set yet, the app prompts me to enter one.
+- The report compares my budget with total expenses and displays the remaining
+  budget (or exceeded amount), health score (0 to 100), status, and advice.
+- The app indicates when I am within budget, when I have reached my exact
+  budget, or when I have exceeded it.
+- Invalid budget amounts (blank, text, zero, negative) show useful errors.
+- I can return to the main menu from the Financial Health submenu.
+
+## 8. Spending graph — To Do (Optional)
 
 As a user, I want to see spending by category in a terminal graph so that I
 can quickly compare where my money goes.
@@ -91,7 +109,7 @@ Acceptance criteria:
 - The graph uses the expenses in the current session.
 - Each category has a readable label and value.
 
-## 8. Expenses are kept after closing the app — Done (Essential)
+## 9. Expenses are kept after closing the app — Done (Essential)
 
 As a user, I want my expenses to still be there when I reopen Dollar Free so
 that I do not lose my records every time I close it.

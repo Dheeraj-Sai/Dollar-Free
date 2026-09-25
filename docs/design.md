@@ -5,7 +5,7 @@
 `bin/dollar_free` starts the app. It makes a MainMenu and calls run on it.
 That is the only thing in the file.
 
-There are five classes in lib:
+There are six classes in lib:
 
 - MainMenu
   - prints the menu and reads the number the user typed
@@ -28,6 +28,11 @@ There are five classes in lib:
 - SavingsGoal
   - holds one target amount, number of days, and the daily saving amount
 
+- FinancialHealthManager
+  - shows the Financial Health submenu
+  - tracks and saves the user budget
+  - calculates health score, status, and advice based on expenses
+
 ## Where the data goes
 
 Expenses live in data/expenses.json. The file is read once when the app opens.
@@ -36,6 +41,9 @@ again each time an expense is added.
 
 Savings goals live in data/savings_goals.json. Goals are loaded when the app
 starts and written again whenever a goal or its progress changes.
+
+The budget lives in data/budget.json. It is read when the app starts and saved
+whenever the user updates their budget.
 
 ## Decisions we made
 
@@ -55,6 +63,9 @@ starts and written again whenever a goal or its progress changes.
   file and leave the real one alone.
 - Savings progress is entered manually because the app only records expenses.
   It does not know a user's income or the amount they actually put into savings.
+- Financial health compares total expenses directly against the user budget,
+  providing a 0-100 score and tier-based status to keep financial standing clear
+  and actionable for students.
 
 ## What the menu looks like
 

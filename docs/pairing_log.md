@@ -69,3 +69,16 @@ Navigator: Vasanth
 - added comprehensive unit, manager, and end-to-end integration tests
 - updated documentation, user stories, backlog, design notes, and pairing log
 
+## Session 6 - 25 Sep 2026
+
+Driver: Dheeraj
+Navigator: Vasanth
+
+- built Financial Health feature (FT05) with user budget setup and updating
+- integrated FinancialHealthManager with ExpenseManager to compute remaining budget and spent percentage
+- implemented 0-100 financial health score and status advice tiers
+- added JSON persistence for the budget in data/budget.json
+- wrote unit tests, manager tests, and end-to-end acceptance tests
+- updated documentation, user stories, backlog, design notes, and pairing log
+
+
