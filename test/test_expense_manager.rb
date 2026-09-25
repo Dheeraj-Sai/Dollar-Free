@@ -128,4 +128,84 @@ class ExpenseManagerTest < Minitest::Test
     assert_nil result
     assert_includes output.string, "Unable to add expense: Invalid expense category 'Holiday'"
   end
+
+  def test_spending_graph_shows_a_bar_for_each_category_with_spending
+    @manager.add_expense(category: "Food", amount: "50")
+    @manager.add_expense(category: "Transport", amount: "120")
+    output = StringIO.new
+
+    @manager.generate_spending_graph(output: output)
+
+    assert_includes output.string, "Spending Graph for #{Date.today}"
+    assert_includes output.string, " 200 | "
+    assert_includes output.string, "Food Transport"
+  end
+
+  def test_spending_graph_hides_categories_with_no_spending
+    @manager.add_expense(category: "Food", amount: "50")
+    output = StringIO.new
+
+    @manager.generate_spending_graph(output: output)
+
+    refute_includes output.string, "Transport"
+  end
+
+  def test_spending_graph_switches_to_the_higher_scale_when_a_category_exceeds_two_hundred
+    @manager.add_expense(category: "Housing", amount: "250")
+    output = StringIO.new
+
+    @manager.generate_spending_graph(output: output)
+
+    assert_includes output.string, "1000 | "
+    assert_includes output.string, " 950 | "
+  end
+
+  def test_spending_graph_caps_a_bar_at_the_maximum
+    @manager.add_expense(category: "Housing", amount: "1500")
+    output = StringIO.new
+
+    @manager.generate_spending_graph(output: output)
+
+    lines = output.string.lines
+    top_row = lines.find { |line| line.start_with?("1000 | ") }
+
+    assert_includes top_row, "*"
+  end
+
+  def test_spending_graph_message_when_nothing_was_spent_today
+    output = StringIO.new
+
+    @manager.generate_spending_graph(output: output)
+
+    assert_includes output.string, "No expenses recorded today."
+  end
+
+  def test_prompt_for_spending_graph_reads_a_mm_dd_yyyy_date
+    @manager.expenses.push(Expense.new(category: "Food", amount: BigDecimal("50"), date: Date.new(2026, 1, 5)))
+    input = StringIO.new("01/05/2026\n")
+    output = StringIO.new
+
+    @manager.prompt_for_spending_graph(input: input, output: output)
+
+    assert_includes output.string, "Spending Graph for 2026-01-05"
+    assert_includes output.string, "Food"
+  end
+
+  def test_prompt_for_spending_graph_rejects_an_invalid_date_format
+    input = StringIO.new("2026-01-05\n")
+    output = StringIO.new
+
+    @manager.prompt_for_spending_graph(input: input, output: output)
+
+    assert_includes output.string, "Unable to show spending graph: Date must be in mm/dd/yyyy format."
+  end
+
+  def test_prompt_for_spending_graph_rejects_a_blank_date
+    input = StringIO.new("\n")
+    output = StringIO.new
+
+    @manager.prompt_for_spending_graph(input: input, output: output)
+
+    assert_includes output.string, "Unable to show spending graph: Date is required."
+  end
 end

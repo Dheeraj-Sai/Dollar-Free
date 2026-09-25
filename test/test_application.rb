@@ -42,4 +42,16 @@ class ApplicationTest < Minitest::Test
     assert_includes output.string, "Invalid option. Please enter a number from 1 to 8."
     assert_includes output.string, "Expense Tracker Signing OFF!!!"
   end
+
+  def test_user_can_view_the_spending_graph_from_the_main_menu
+    today = Date.today.strftime("%m/%d/%Y")
+    input = StringIO.new("1\nFood\n15.50\n5\n#{today}\n8\n")
+    output = StringIO.new
+
+    new_menu(input: input, output: output).run
+
+    assert_includes output.string, "Spending Graph"
+    assert_includes output.string, "Food"
+    assert_includes output.string, "Expense Tracker Signing OFF!!!"
+  end
 end

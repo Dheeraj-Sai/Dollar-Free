@@ -40,7 +40,7 @@ class MainMenu
     when "4"
       @output.puts "Financial Health is not available yet."
     when "5"
-      @output.puts "Spending Graph is not available yet."
+      @expense_manager.prompt_for_spending_graph(input: @input, output: @output)
     when "6"
       @output.puts "Savings Goal is not available yet."
     when "7"
