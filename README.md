@@ -6,13 +6,14 @@ how they are spending money.
 
 ## What is done so far
 
-Right now, the app has a main menu, Add Expense, View Expenses, and the
-Daily Report.
+Right now, the app has a main menu, Add Expense, View Expenses, Daily Report,
+and Savings Goals.
 
 - The main menu is shown when the program starts.
 - Option 1 lets the user add an expense.
 - Option 2 shows all the expenses that have been added.
 - Option 3 shows only today's expenses and the total spent today.
+- Option 6 lets the user add and view daily savings goals.
 - The amount has to be a number bigger than 0.
 - The category has to be one of the categories in the program.
 - If the user enters a wrong menu number, the app shows an error message.
@@ -77,7 +78,7 @@ When the app starts, this is the menu:
 8. Exit
 ```
 
-Type a number and press Enter. For now, `1`, `2`, `3`, and `8` are the
+Type a number and press Enter. For now, `1`, `2`, `3`, `6`, and `8` are the
 options that do something.
 
 ## Adding an expense
@@ -131,6 +132,40 @@ Daily Report for 2026-09-14
 2. Transport - 42.75
 Total spent: 58.25
 ```
+
+## Savings goals
+
+Choose option `6` to open the Savings Goal menu. From there, choose `1` to set
+a new goal, `2` to view all goals, `3` to add savings progress, or `4` to go
+back to the main menu.
+
+The app asks for a target amount and how many days you have to save it. It then
+calculates how much should be saved each day. The daily amount is rounded up to
+the nearest cent, so the full target can still be reached.
+
+```text
+Target savings amount: 100
+Number of days: 3
+Savings goal added successfully!
+You need to save $33.34 per day.
+```
+
+The target must be greater than zero and the number of days must be a whole
+number greater than zero.
+
+To update progress, choose option `3`, select a goal number, and enter the
+amount you saved. The goal list shows the amount saved, amount remaining, and
+percentage complete.
+
+```text
+Choose a goal number: 1
+Amount saved: 25
+Progress added successfully!
+This goal is now 25.00% complete.
+```
+
+Goals and their progress are saved in `data/savings_goals.json`, so they are
+still available when the app is opened again.
 
 ## Where the expenses are saved
 
@@ -198,19 +233,22 @@ bin/dollar_free          starts the program
 lib/expense.rb           stores one expense
 lib/expense_manager.rb   checks, adds, shows, and saves expenses
 lib/main_menu.rb         shows the main menu
+lib/savings_goal.rb      stores one savings goal
+lib/savings_goal_manager.rb  creates, updates, saves, and lists savings goals
 data/expenses.json       the saved expenses (not committed to Git)
+data/savings_goals.json  saved savings goals and progress (not committed to Git)
 test/                    tests for the code
 docs/                    user stories, design, and planning notes
 Gemfile                  says which gems the project uses
 .rubocop.yml             the code style rules and why they were chosen
-user_stories_add_expense.txt  user stories and acceptance criteria
+user_stories_add_expense.txt  earlier user stories and acceptance criteria
+user_stories_savings_goal.txt savings-goal story and acceptance criteria
 ```
 
 ## Features to add later
 
 - Financial health
 - Spending graph
-- Savings goal
 - Achievements
 
 ## Known limitations
@@ -223,7 +261,7 @@ user_stories_add_expense.txt  user stories and acceptance criteria
 - The date of an expense is always the day it was entered. There is no way to
   add an expense for an earlier day.
 - The Daily Report only covers today. There is no weekly or monthly report.
-- Financial Health, Spending Graph, Savings Goal, and Achievements are not
+- Financial Health, Spending Graph, and Achievements are not
   built yet. Those menu options say that the feature is not available.
 - If the saved file is damaged, the app stops with an error instead of opening.
   This is on purpose, so that real records are not quietly replaced.

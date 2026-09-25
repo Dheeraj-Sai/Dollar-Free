@@ -5,7 +5,7 @@
 `bin/dollar_free` starts the app. It makes a MainMenu and calls run on it.
 That is the only thing in the file.
 
-There are three classes in lib:
+There are five classes in lib:
 
 - MainMenu
   - prints the menu and reads the number the user typed
@@ -21,11 +21,21 @@ There are three classes in lib:
   - holds the category, amount and date for one expense
   - can turn itself into a Hash for saving
 
+- SavingsGoalManager
+  - shows the Savings Goal submenu
+  - validates, saves, and loads goals and their savings progress
+
+- SavingsGoal
+  - holds one target amount, number of days, and the daily saving amount
+
 ## Where the data goes
 
 Expenses live in data/expenses.json. The file is read once when the app opens.
 After that everything works off the array in memory, and the file gets written
 again each time an expense is added.
+
+Savings goals live in data/savings_goals.json. Goals are loaded when the app
+starts and written again whenever a goal or its progress changes.
 
 ## Decisions we made
 
@@ -43,6 +53,8 @@ again each time an expense is added.
   records and the user would never know.
 - ExpenseManager takes the file path as a setting so the tests can pass a temp
   file and leave the real one alone.
+- Savings progress is entered manually because the app only records expenses.
+  It does not know a user's income or the amount they actually put into savings.
 
 ## What the menu looks like
 

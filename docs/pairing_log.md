@@ -56,3 +56,16 @@ Navigator: Dheeraj
 The conflicts happened because we both changed the same files at the same
 time. Next time we pull main into our branch earlier. We kept the amount check
 from main since it gave a clearer message for something like "5.".
+
+## Session 5 - 25 Sep 2026
+
+Driver: Dheeraj
+Navigator: Vasanth
+
+- built Savings Goals submenu with goal creation, daily amount calculation, and goal listing
+- added savings progress tracking to record saved amounts, remaining amounts, and completion percentage
+- added JSON persistence for savings goals in data/savings_goals.json
+- fixed submenu navigation to return to the main menu on blank input
+- added comprehensive unit, manager, and end-to-end integration tests
+- updated documentation, user stories, backlog, design notes, and pairing log
+

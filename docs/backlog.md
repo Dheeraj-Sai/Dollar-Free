@@ -29,6 +29,12 @@
   - tests point at a temp file so they do not touch the real one
   - added a date to Expense, otherwise the daily report had nothing to filter on
 
+- Savings goal
+  - set target amount and number of days
+  - validate the inputs and calculate the daily amount
+  - add more than one goal and view the goal list
+  - manually add savings progress and save goals to data/savings_goals.json
+
 # To do
 
 - Financial health
@@ -39,10 +45,6 @@
   - group the expenses by category
   - print simple bars in the terminal
 
-- Savings goal
-  - user sets a goal amount
-  - compare the goal against what has been spent
-
 - Achievements
   - rules not decided yet
 
@@ -51,5 +53,5 @@
 Financial health is next. It can use the expenses we already load from the
 file, so there is nothing new to set up for it.
 
-Savings goal and achievements are the optional ones. We will only get to them
-if there is time left after the graph.
+Achievements is optional. It will be worked on only if there is time after the
+other planned features.

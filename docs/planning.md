@@ -22,8 +22,8 @@ something simple to record what they spend.
 - savings goal
 - achievements
 
-The daily report ended up getting done even though we listed it as optional,
-since it was easy once the dates were being saved.
+The daily report and savings goals ended up getting done even though we listed
+them as optional.
 
 ## How we work
 

@@ -1,0 +1,19 @@
+Feature: Set Daily Savings Goal
+
+User story
+As a student, I want to set a savings goal so that I know how much I need to
+save each day to reach my target.
+
+Acceptance criteria
+1. The user can enter a target savings amount and a number of days.
+2. The target amount must be a number greater than zero.
+3. The number of days must be a whole number greater than zero.
+4. The app calculates and displays the amount that must be saved each day.
+5. The daily amount rounds up to the nearest cent so the target can be met.
+6. The user can add and view multiple savings goals.
+7. The user can manually add a saved amount to a selected goal.
+8. Each goal shows the saved amount, remaining amount, and percentage complete.
+9. Goals and their progress are saved and loaded again when the app restarts.
+10. Invalid amounts, time periods, goal numbers, and menu choices show useful
+    error messages.
+11. The user can return to the main menu from the Savings Goal submenu.

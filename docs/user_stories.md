@@ -63,14 +63,23 @@ Acceptance criteria:
 - The report shows the total spent that day.
 - A clear message is shown if nothing was spent that day.
 
-## 6. Savings goal — To Do
+## 6. Savings goal — Done
 
-As a user, I want to set a savings goal so that I can work toward saving money.
+As a student, I want to set savings goals so that I know how much I need to
+save each day to reach my targets.
 
 Acceptance criteria:
 
-- I can enter a goal amount greater than zero.
-- The program shows whether my spending is within the goal.
+- Choosing option 6 opens the Savings Goal submenu.
+- I can enter a target amount and a whole number of days.
+- The app shows the daily amount I need to save, rounded up to the nearest
+  cent.
+- I can add and view more than one goal.
+- I can manually add savings progress to a selected goal.
+- Each goal shows the amount saved, remaining amount, and percentage complete.
+- Goals and their progress are saved and loaded when the app restarts.
+- Invalid goal amounts, days, progress amounts, goal numbers, and submenu
+  choices show useful error messages.
 
 ## 7. Spending graph — To Do (Optional)
 

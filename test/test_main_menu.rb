@@ -20,11 +20,26 @@ class MainMenuTest < Minitest::Test
     end
   end
 
+  class SavingsGoalManagerSpy
+    attr_reader :input, :output
+
+    def savings_goal_menu(input:, output:)
+      @input = input
+      @output = output
+    end
+  end
+
   def setup
     @input = StringIO.new
     @output = StringIO.new
     @expense_manager = ExpenseManagerSpy.new
-    @menu = MainMenu.new(input: @input, output: @output, expense_manager: @expense_manager)
+    @savings_goal_manager = SavingsGoalManagerSpy.new
+    @menu = MainMenu.new(
+      input: @input,
+      output: @output,
+      expense_manager: @expense_manager,
+      savings_goal_manager: @savings_goal_manager
+    )
   end
 
   def test_displays_all_menu_options
@@ -63,9 +78,10 @@ class MainMenuTest < Minitest::Test
     assert_includes @output.string, "Spending Graph is not available yet."
   end
 
-  def test_option_six_shows_savings_goal_message
+  def test_option_six_opens_savings_goal_menu
     assert @menu.process_selection("6")
-    assert_includes @output.string, "Savings Goal is not available yet."
+    assert_same @input, @savings_goal_manager.input
+    assert_same @output, @savings_goal_manager.output
   end
 
   def test_option_seven_shows_achievements_message
