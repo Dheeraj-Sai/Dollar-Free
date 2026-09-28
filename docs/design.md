@@ -5,16 +5,18 @@
 `bin/dollar_free` starts the app. It makes a MainMenu and calls run on it.
 That is the only thing in the file.
 
-There are six classes in lib:
+There are seven classes in lib:
 
 - MainMenu
   - prints the menu and reads the number the user typed
-  - calls ExpenseManager for options 1, 2 and 3
-  - does not know anything about expenses itself
+  - calls ExpenseManager, SavingsGoalManager, and FinancialHealthManager for
+    the option the user picked
+  - does not know anything about expenses, goals, or budgets itself
 
 - ExpenseManager
   - checks the category and the amount
-  - adds an expense, lists them, and builds the daily report
+  - adds an expense, lists them, builds the daily report, and draws the
+    spending graph
   - reads and writes the JSON file
 
 - Expense
@@ -24,6 +26,7 @@ There are six classes in lib:
 - SavingsGoalManager
   - shows the Savings Goal submenu
   - validates, saves, and loads goals and their savings progress
+  - draws the savings progress bar for a goal the user picks
 
 - SavingsGoal
   - holds one target amount, number of days, and the daily saving amount
@@ -31,7 +34,12 @@ There are six classes in lib:
 - FinancialHealthManager
   - shows the Financial Health submenu
   - tracks and saves the user budget
-  - calculates health score, status, and advice based on expenses
+  - asks FinancialHealth to do the scoring and prints the report
+
+- FinancialHealth
+  - takes a budget, the expenses, and the savings goals
+  - calculates the health score, status, runway, and advice
+  - has no menu code and does not read or write any file
 
 ## Where the data goes
 
@@ -66,6 +74,19 @@ whenever the user updates their budget.
 - Financial health compares total expenses directly against the user budget,
   providing a 0-100 score and tier-based status to keep financial standing clear
   and actionable for students.
+- FinancialHealth only calculates; it does not print or save anything. That
+  is left to FinancialHealthManager, so the scoring logic can be tested
+  without touching input, output, or a file.
+- The Spending Graph and Savings Progress bars both use the block character
+  `█` for the filled part, and Savings Progress uses `░` for the unfilled
+  part. Plain characters like `#` and `-` would also have worked, but the
+  block characters look closer to a real progress bar.
+- The Spending Graph switches its y-axis from 0-200 to 0-1000 only when a
+  category's total for that date goes over 200. One fixed scale would either
+  waste space on a normal day or squash a day with one big expense.
+- We planned to build Achievements, but it needed badge rules and progress
+  tracking that felt too big for this project. We replaced it with Savings
+  Progress instead, since a progress bar reuses data the app already saves.
 
 ## What the menu looks like
 
@@ -77,7 +98,7 @@ whenever the user updates their budget.
 4. Financial Health
 5. Spending Graph
 6. Savings Goal
-7. Achievements
+7. Savings Progress
 8. Exit
 Choose an option:
 ```

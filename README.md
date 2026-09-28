@@ -133,6 +133,74 @@ Daily Report for 2026-09-14
 Total spent: 58.25
 ```
 
+## Financial health
+
+Choose option `4` to open the Financial Health menu. From there, choose `1` to
+view your financial health report, `2` to set or update your budget, or `3` to
+return to the main menu.
+
+The report compares your total recorded expenses against your budget:
+
+```text
+Financial Health Report
+Budget: $500.00
+Total Spent: $175.50
+Remaining: $324.50 (64.90% remaining)
+Health Score: 65/100
+Status: Caution (Moderate)
+Advice: Moderate spending (35.10% spent). Keep an eye on upcoming expenses.
+```
+
+If spending exceeds the budget, the app clearly alerts you and shows the exact
+exceeded amount:
+
+```text
+Remaining: -$60.00 (Exceeded by $60.00)
+Health Score: 0/100
+Status: Over Budget (Exceeded)
+```
+
+The budget is saved in `data/budget.json`, so it persists across sessions.
+
+## Spending graph
+
+Choose option `5` to see a bar graph of one day's spending by category. The
+app asks for a date in mm/dd/yyyy format, then draws a bar for each category
+that has spending on that date.
+
+```text
+Choose an option: 5
+Enter date (mm/dd/yyyy): 09/14/2026
+Spending Graph for 2026-09-14
+ 200 |
+ 190 |
+ 180 |
+ 170 |
+ 160 |
+ 150 |
+ 140 |
+ 130 |
+ 120 |      █████████
+ 110 |      █████████
+ 100 |      █████████
+  90 |      █████████
+  80 |      █████████
+  70 |      █████████
+  60 |      █████████
+  50 | ████ █████████
+  40 | ████ █████████
+  30 | ████ █████████
+  20 | ████ █████████
+  10 | ████ █████████
+   0 | ---- ---------
+       Food Transport
+```
+
+The y-axis goes up to 200 by default. If any category's total for that date
+is over 200, the graph switches to a scale of 1000 instead, and a single
+category's bar is capped at 1000 even if the real amount is higher.
+Categories with nothing spent on that date are left off the graph.
+
 ## Savings goals
 
 Choose option `6` to open the Savings Goal menu. From there, choose `1` to set
@@ -181,35 +249,6 @@ Your Savings Goals
 Choose a goal number: 1
 [███████████████████████████████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 55.00%
 ```
-
-## Financial health
-
-Choose option `4` to open the Financial Health menu. From there, choose `1` to
-view your financial health report, `2` to set or update your budget, or `3` to
-return to the main menu.
-
-The report compares your total recorded expenses against your budget:
-
-```text
-Financial Health Report
-Budget: $500.00
-Total Spent: $175.50
-Remaining: $324.50 (64.90% remaining)
-Health Score: 65/100
-Status: Caution (Moderate)
-Advice: Moderate spending (35.10% spent). Keep an eye on upcoming expenses.
-```
-
-If spending exceeds the budget, the app clearly alerts you and shows the exact
-exceeded amount:
-
-```text
-Remaining: -$60.00 (Exceeded by $60.00)
-Health Score: 0/100
-Status: Over Budget (Exceeded)
-```
-
-The budget is saved in `data/budget.json`, so it persists across sessions.
 
 ## Where the expenses are saved
 
@@ -276,7 +315,8 @@ the team turned off has a comment saying why.
 bin/dollar_free          starts the program
 lib/expense.rb           stores one expense
 lib/expense_manager.rb   checks, adds, shows, and saves expenses
-lib/financial_health_manager.rb tracks budget and evaluates financial health
+lib/financial_health.rb  calculates the health score, status, and advice
+lib/financial_health_manager.rb tracks the budget, shows the menu, and prints reports
 lib/main_menu.rb         shows the main menu
 lib/savings_goal.rb      stores one savings goal
 lib/savings_goal_manager.rb  creates, updates, saves, and lists savings goals
@@ -290,6 +330,8 @@ Gemfile                  says which gems the project uses
 user_stories_add_expense.txt  earlier user stories and acceptance criteria
 user_stories_savings_goal.txt savings-goal story and acceptance criteria
 user_stories_financial_health.txt financial health story and acceptance criteria
+user_stories_spending_graph.txt spending-graph story and acceptance criteria
+user_stories_savings_progress.txt savings-progress story and acceptance criteria
 ```
 
 ## Features to add later
@@ -319,9 +361,9 @@ All of the originally planned features have been built.
 - `docs/user_stories.md` has the stories and acceptance criteria.
 - `docs/design.md` explains the current design.
 - `docs/backlog.md` shows done and planned work.
-- `docs/planning.md` has the initial plan.
-- `docs/pairing_log.md` and `docs/retrospective.md` need to be completed with
-  the team's real sessions and reflections.
+- `docs/planning.md` has the initial plan and a later update to it.
+- `docs/pairing_log.md` has the team's pairing sessions.
+- `docs/retrospective.md` has the team's reflections on the finished project.
 
 ## License
 

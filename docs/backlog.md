@@ -41,19 +41,27 @@
   - calculate remaining amount, spending percentage, and health score (0 to 100)
   - report status tiers and give practical student advice
 
+- Spending graph
+  - ask for a date in mm/dd/yyyy format and validate it
+  - group that day's expenses by category and add them up
+  - draw a bar for each category with spending, and skip categories with none
+  - switch the y-axis from 0-200 to 0-1000 when a category goes over 200
+  - cap a bar at 1000 even if the real amount is higher
+  - tests for the date parsing, the scale switch, and the empty-day message
+
+- Savings progress
+  - list the existing goals and ask for a goal number
+  - draw a bar using the goal's percentage complete
+  - reused the goal lookup and validation already built for adding progress
+  - tests for a normal goal, an invalid goal number, and no goals yet
+
 # To do
 
-- Spending graph
-  - group the expenses by category
-  - print simple bars in the terminal
-
-- Achievements
-  - rules not decided yet
+Nothing left from the original plan. All seven planned features are built.
 
 # Notes
 
-Spending graph is next. It can group the expenses we already load from the
-file, so there is nothing new to set up for it.
-
-Achievements is optional. It will be worked on only if there is time after the
-other planned features.
+Achievements needed badge rules and progress tracking that felt too big for
+this project, so we replaced it with Savings Progress instead: a bar that
+shows how close a goal is to being finished, using data the app already
+saves.

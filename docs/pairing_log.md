@@ -81,4 +81,41 @@ Navigator: Vasanth
 - wrote unit tests, manager tests, and end-to-end acceptance tests
 - updated documentation, user stories, backlog, design notes, and pairing log
 
+## Session 7 - 27 Sep 2026
+
+Driver: Vasanth
+Navigator: Dheeraj
+
+- built the Spending Graph, asking for a date in mm/dd/yyyy and validating it
+- grouped that day's expenses by category and drew a bar for each one
+- decided the y-axis switches from 0-200 to 0-1000 only when a category goes
+  over 200, so a normal day is not squashed onto the same scale as a big one
+- capped a bar at 1000 so one very large expense could not stretch the graph
+- added unit and acceptance tests for the date parsing, the scale switch,
+  and the empty-day message
+
+Talked through whether categories with nothing spent that day should still
+show an empty column. Decided to leave them off completely so the graph is
+not cluttered with blank space.
+
+## Session 8 - 28 Sep 2026
+
+Driver: Vasanth
+Navigator: Dheeraj
+
+- decided Achievements needed badge rules and progress tracking that were
+  too big for this project, and replaced it with Savings Progress instead
+- built the progress bar using the goal's existing percentage complete, and
+  reused the goal lookup already written for adding progress
+- switched the bar characters from `*` and plain spaces to the block
+  characters `█` and `░`, since they look closer to a real progress bar
+- widened the bar so small percentage changes are easier to see
+- added tests for a normal goal, an invalid goal number, and no goals yet
+- updated the README, user stories, design notes, and backlog to match
+
+Went back and forth on plain ASCII (`#`/`-`) versus the Unicode block
+characters. Kept the block characters because our terminals rendered them
+fine, but noted it as a small risk if the app is graded on a terminal that
+does not support them.
+
 

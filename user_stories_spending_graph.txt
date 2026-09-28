@@ -1,0 +1,18 @@
+Feature: View a Spending Graph
+
+User story
+As a user, I want to see my spending by category in a terminal graph so that
+I can quickly compare where my money went on a given day.
+
+Acceptance criteria
+1. Choosing option 5 asks for a date in mm/dd/yyyy format.
+2. The graph draws one bar per category, labeled along the bottom.
+3. Categories with nothing spent on that date are left off the graph.
+4. The y-axis goes up to 200 by default.
+5. If any category's total for that date is over 200, the y-axis switches to
+   go up to 1000 instead.
+6. A single category's bar is capped at 1000 even if the real total is
+   higher.
+7. A clear message is shown when nothing was spent on the chosen date.
+8. A blank or badly formatted date shows a useful error message without
+   crashing.

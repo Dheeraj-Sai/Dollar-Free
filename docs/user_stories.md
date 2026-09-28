@@ -99,15 +99,21 @@ Acceptance criteria:
 - Invalid budget amounts (blank, text, zero, negative) show useful errors.
 - I can return to the main menu from the Financial Health submenu.
 
-## 8. Spending graph — To Do (Optional)
+## 8. Spending graph — Done (Optional)
 
 As a user, I want to see spending by category in a terminal graph so that I
-can quickly compare where my money goes.
+can quickly compare where my money goes on a given day.
 
 Acceptance criteria:
 
-- The graph uses the expenses in the current session.
-- Each category has a readable label and value.
+- Choosing option 5 asks for a date in mm/dd/yyyy format.
+- The graph draws one bar per category, labeled along the bottom.
+- Categories with nothing spent on that date are left off the graph.
+- The y-axis goes up to 200 by default, or up to 1000 if any category's total
+  for that date is over 200.
+- A single category's bar is capped at 1000 even if the real total is higher.
+- A clear message is shown if nothing was spent on the chosen date.
+- A blank or badly formatted date shows a useful error message.
 
 ## 9. Expenses are kept after closing the app — Done (Essential)
 
@@ -121,3 +127,16 @@ Acceptance criteria:
 - The first time the program runs, when there is no saved file yet, it starts
   with an empty list and does not show an error.
 - An expense that was rejected is not saved.
+
+## 10. Savings progress — Done (Optional)
+
+As a student, I want to see a progress bar for a savings goal so that I can
+tell at a glance how close I am to reaching it.
+
+Acceptance criteria:
+
+- Choosing option 7 lists the existing savings goals and asks for a goal
+  number.
+- The chosen goal's percentage complete is drawn as a filled and unfilled bar.
+- A clear message is shown if no savings goals have been added yet.
+- An invalid goal number shows a useful error message.

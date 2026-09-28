@@ -1,0 +1,14 @@
+Feature: View Savings Progress
+
+User story
+As a student, I want to see a progress bar for one of my savings goals so
+that I can tell at a glance how close I am to reaching it.
+
+Acceptance criteria
+1. Choosing option 7 lists the existing savings goals, the same way option 6
+   does.
+2. The user picks a goal by its number.
+3. The chosen goal's percentage complete is drawn as a bar, filled up to
+   that percentage.
+4. A clear message is shown when no savings goals have been added yet.
+5. An invalid goal number shows a useful error message without crashing.

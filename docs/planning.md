@@ -38,3 +38,12 @@ the story and backlog before merging.
 - the tests pass
 - the story and backlog are updated
 - the commit message says what changed
+
+## Update - 28 Sep 2026
+
+Spending graph and financial health shipped as planned. We dropped
+Achievements partway through, because it needed badge rules and progress
+tracking that felt too big for this project, and replaced it with Savings
+Progress: a bar that shows how close a goal is to done using data the app
+already saves. Every feature on the original list, essential and optional,
+ended up built.
