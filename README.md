@@ -6,10 +6,6 @@ how they are spending money.
 
 ## What is done so far
 
-Right now, the app has a main menu, Add Expense, View Expenses, Daily Report,
-Financial Health, Spending Graph, Savings Goals, and Savings Progress.
-
-- The main menu is shown when the program starts.
 - Option 1 lets the user add an expense.
 - Option 2 shows all the expenses that have been added.
 - Option 3 shows only today's expenses and the total spent today.
@@ -23,30 +19,14 @@ Financial Health, Spending Graph, Savings Goals, and Savings Progress.
 - Expenses are saved in a file, so they are still there the next time the
   app is opened.
 
-The main features planned for the project were Add Expense, View Expenses,
-Daily Report, Financial Health, Spending Graph, Savings Goal, and Savings
-Progress. All of them are now built.
-
 ## How to run it
 
-Make sure Ruby is installed first:
-
-```bash
-ruby --version
-```
-
-Go inside the project folder:
+Make sure Ruby is installed (`ruby --version`), then clone the project and go
+into its folder (or `cd` into it if you already have it):
 
 ```bash
 git clone https://github.com/Dheeraj-Sai/Dollar-Free.git
 cd Dollar-Free
-```
-
-If you already have the project on your computer, just go to the folder where
-you saved it:
-
-```bash
-cd path/to/Dollar-Free
 ```
 
 Then start the program:
@@ -55,13 +35,8 @@ Then start the program:
 ./bin/dollar_free
 ```
 
-If that does not work because of permissions, run this once:
-
-```bash
-chmod +x bin/dollar_free
-```
-
-Then run `./bin/dollar_free` again.
+If that fails because of permissions, run `chmod +x bin/dollar_free` once,
+then try again.
 
 ## Main menu
 
@@ -158,24 +133,9 @@ Insights & Forecast:
 - Advice: Slow down! Aim to keep daily spending below $16.67.
 ```
 
-If spending exceeds the budget, the app clearly alerts you, marks the health score as Critical, and shows the exceeded amount:
-
-```text
-Student Financial Health Report
-Overall Health Score: 0/100 [ Critical (Needs Attention) ]
-Budget: $200.00 | Total Spent: $250.00 | Remaining: -$50.00 (Exceeded by $50.00)
-
-Score Breakdown:
-- Budget Control: 0/35
-- Burn Rate & Pace: 0/30 (Daily: $250.00 vs Safe: $6.67)
-- Category Balance: 20/20 (Wants: 0.00%)
-- Savings Momentum: 0/15
-
-Insights & Forecast:
-- Runway: Exhausted! You have exceeded your budget by $50.00.
-- Top Expense: Other ($250.00 - 100.00% of spending).
-- Advice: Alert! Budget exceeded. Freeze discretionary spending immediately to recover.
-```
+If spending exceeds the budget, the score drops to 0/100 (Critical), the
+remaining amount is shown as negative with an "Exceeded by $X" note, and the
+advice switches to a budget-exceeded alert.
 
 The budget is saved in `data/budget.json`, so it persists across sessions.
 
@@ -190,20 +150,9 @@ Choose an option: 5
 Enter date (mm/dd/yyyy): 09/14/2026
 Spending Graph for 2026-09-14
  200 |
- 190 |
- 180 |
- 170 |
- 160 |
- 150 |
- 140 |
- 130 |
+ ...
  120 |      █████████
- 110 |      █████████
- 100 |      █████████
-  90 |      █████████
-  80 |      █████████
-  70 |      █████████
-  60 |      █████████
+ ...
   50 | ████ █████████
   40 | ████ █████████
   30 | ████ █████████
@@ -212,6 +161,9 @@ Spending Graph for 2026-09-14
    0 | ---- ---------
        Food Transport
 ```
+
+(rows in between are blank until the bar height is reached; shortened here
+for length)
 
 The y-axis goes up to 200 by default. If any category's total for that date
 is over 200, the graph switches to a scale of 1000 instead, and a single
@@ -270,23 +222,9 @@ Choose a goal number: 1
 You've reached the halfway point of your goal. Keep up the great work!
 ```
 
-## Where the expenses are saved
-
-The expenses are kept in `data/expenses.json`. The file is read once when the
-app starts, and it is written again every time an expense is added. While the
-app is running, the expenses are held in memory and every screen reads from
-there.
-
-The file looks like this. The amount is saved as text so the exact value is
-kept:
-
-```json
-[
-  { "category": "Food", "amount": "15.5", "date": "2026-09-14" }
-]
-```
-
-The file is not committed to Git, because it holds the user's own data.
+Expenses, goals, and the budget are each saved to their own JSON file in
+`data/`, which is not committed to Git since it holds the user's own data.
+See `docs/design.md` for when each file is read and written.
 
 ## Tests
 
@@ -313,47 +251,11 @@ generated automatically and is not committed to Git.
 
 ## Checking the code style
 
-The project uses RuboCop to check that the code is written in a consistent
-style. Install it once:
+The project uses RuboCop (`gem install rubocop` if you don't have it). Run
+`rubocop` from the project folder; it should report no offenses. Rules that
+were changed from the default are explained in `.rubocop.yml`.
 
-```bash
-gem install rubocop
-```
-
-Then check the whole project from the project folder:
-
-```bash
-rubocop
-```
-
-It should report no offenses. The rules are in `.rubocop.yml`, and every rule
-the team turned off has a comment saying why.
-
-## Files in the project
-
-```text
-bin/dollar_free          starts the program
-lib/expense.rb           stores one expense
-lib/expense_manager.rb   checks, adds, shows, and saves expenses
-lib/financial_health.rb  calculates the health score, status, and advice
-lib/financial_health_manager.rb tracks the budget, shows the menu, and prints reports
-lib/main_menu.rb         shows the main menu
-lib/money_helpers.rb     shared amount formatting and checks, used by the managers
-lib/savings_goal.rb      stores one savings goal
-lib/savings_goal_manager.rb  creates, updates, saves, and lists savings goals
-data/expenses.json       the saved expenses (not committed to Git)
-data/savings_goals.json  saved savings goals and progress (not committed to Git)
-data/budget.json         saved user budget (not committed to Git)
-test/                    tests for the code
-docs/                    user stories, design, and planning notes
-Gemfile                  says which gems the project uses
-.rubocop.yml             the code style rules and why they were chosen
-user_stories_add_expense.txt  earlier user stories and acceptance criteria
-user_stories_savings_goal.txt savings-goal story and acceptance criteria
-user_stories_financial_health.txt financial health story and acceptance criteria
-user_stories_spending_graph.txt spending-graph story and acceptance criteria
-user_stories_savings_progress.txt savings-progress story and acceptance criteria
-```
+See `docs/design.md` for what each file in `lib/` does.
 
 ## Features to add later
 
@@ -385,7 +287,3 @@ All of the originally planned features have been built.
 - `docs/planning.md` has the initial plan and a later update to it.
 - `docs/pairing_log.md` has the team's pairing sessions.
 - `docs/retrospective.md` has the team's reflections on the finished project.
-
-## License
-
-See the [LICENSE](LICENSE) file.
