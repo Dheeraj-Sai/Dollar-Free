@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Unit tests for ExpenseManager: adding, listing, reporting, and the
+# spending graph.
+
 require_relative "test_helper"
 
 class ExpenseManagerTest < Minitest::Test

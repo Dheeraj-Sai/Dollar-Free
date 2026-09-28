@@ -59,6 +59,13 @@
   - tests for a normal goal, each milestone message, an invalid goal number,
     and no goals yet
 
+- Integration testing
+  - added end-to-end tests for View Expenses and the Daily Report through
+    the main menu, the two options that did not have one yet
+  - every main menu option, 1 through 8, now has a test that runs through
+    the real MainMenu, ExpenseManager, SavingsGoalManager, and
+    FinancialHealthManager together, not stand-ins
+
 # In Progress
 
 None currently (all planned work items completed, tested, and shipped).

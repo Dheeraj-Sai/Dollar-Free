@@ -338,6 +338,7 @@ lib/expense_manager.rb   checks, adds, shows, and saves expenses
 lib/financial_health.rb  calculates the health score, status, and advice
 lib/financial_health_manager.rb tracks the budget, shows the menu, and prints reports
 lib/main_menu.rb         shows the main menu
+lib/money_helpers.rb     shared amount formatting and checks, used by the managers
 lib/savings_goal.rb      stores one savings goal
 lib/savings_goal_manager.rb  creates, updates, saves, and lists savings goals
 data/expenses.json       the saved expenses (not committed to Git)

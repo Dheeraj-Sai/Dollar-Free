@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Unit tests for the FinancialHealth calculator.
+
 require_relative "test_helper"
 require_relative "../lib/financial_health"
 require_relative "../lib/expense"

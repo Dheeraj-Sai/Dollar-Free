@@ -5,7 +5,7 @@
 `bin/dollar_free` starts the app. It makes a MainMenu and calls run on it.
 That is the only thing in the file.
 
-There are seven classes in lib:
+There are seven classes and one shared module in lib:
 
 - MainMenu
   - prints the menu and reads the number the user typed
@@ -41,6 +41,14 @@ There are seven classes in lib:
   - takes a budget, the expenses, and the savings goals
   - calculates the health score, status, runway, and advice
   - has no menu code and does not read or write any file
+
+- MoneyHelpers (a module, not a class)
+  - formats a dollar amount and a percentage for display
+  - checks that a money amount was entered, is a valid number, and is
+    greater than zero
+  - included into ExpenseManager, SavingsGoalManager, FinancialHealthManager,
+    and FinancialHealth, since all four needed the exact same formatting and
+    checks
 
 ## Where the data goes
 
@@ -80,6 +88,11 @@ whenever the user updates their budget.
 - FinancialHealth only calculates; it does not print or save anything. That
   is left to FinancialHealthManager, so the scoring logic can be tested
   without touching input, output, or a file.
+- ExpenseManager, SavingsGoalManager, FinancialHealthManager, and
+  FinancialHealth all had their own copies of the same dollar/percentage
+  formatting, and three of them had their own copy of the same "is this a
+  valid positive amount" check. We pulled both into one MoneyHelpers module
+  instead of leaving four copies of the same few lines around.
 - The Spending Graph and Savings Progress bars both use the block character
   `█` for the filled part, and Savings Progress uses `░` for the unfilled
   part. Plain characters like `#` and `-` would also have worked, but the

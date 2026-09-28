@@ -1,7 +1,12 @@
 require "bigdecimal"
+require_relative "money_helpers"
 
-# Calculates financial health pillars, scores, runway, and insights.
+# Calculates the health score, status, runway, and advice from a budget,
+# expenses, and savings goals.
 class FinancialHealth
+  include MoneyHelpers
+
+  # Treated as "wants" rather than "needs" when scoring category balance.
   DISCRETIONARY_CATEGORIES = %w[Entertainment Other].freeze
 
   attr_reader :budget, :expenses, :goals
@@ -33,6 +38,8 @@ class FinancialHealth
     ((1 - (total_expenses / budget)) * 35).round
   end
 
+  # Assumes a 30-day month, and rounds up so the allowance is never
+  # slightly under what the budget can actually cover.
   def safe_daily_allowance
     (budget / 30).round(2, BigDecimal::ROUND_CEILING)
   end
@@ -128,11 +135,5 @@ class FinancialHealth
     else
       "Great job! Your spending pace and category balance are in good shape."
     end
-  end
-
-  private
-
-  def format_amount(amount)
-    format("$%.2f", amount)
   end
 end

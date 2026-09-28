@@ -2,9 +2,13 @@ require "bigdecimal"
 require "fileutils"
 require "json"
 require_relative "savings_goal"
+require_relative "money_helpers"
 
-# Keeps the savings goals made while the program is running.
+# Creates, saves, and lists savings goals, and shows their progress bar
+# and submenu.
 class SavingsGoalManager
+  include MoneyHelpers
+
   DEFAULT_STORE_PATH = File.expand_path("../data/savings_goals.json", __dir__)
 
   attr_reader :goals, :store_path
@@ -165,18 +169,7 @@ class SavingsGoalManager
   end
 
   def validate_target_amount(target_amount)
-    value = target_amount.to_s.strip
-    raise ArgumentError, "Target amount is required." if value.empty?
-
-    begin
-      amount = BigDecimal(value)
-    rescue ArgumentError
-      raise ArgumentError, "Target amount must be a valid number."
-    end
-
-    raise ArgumentError, "Target amount must be greater than zero." unless amount.positive?
-
-    amount
+    parse_positive_amount(target_amount, "Target amount")
   end
 
   def validate_days(days)
@@ -191,18 +184,7 @@ class SavingsGoalManager
   end
 
   def validate_progress_amount(amount)
-    value = amount.to_s.strip
-    raise ArgumentError, "Savings amount is required." if value.empty?
-
-    begin
-      saved_amount = BigDecimal(value)
-    rescue ArgumentError
-      raise ArgumentError, "Savings amount must be a valid number."
-    end
-
-    raise ArgumentError, "Savings amount must be greater than zero." unless saved_amount.positive?
-
-    saved_amount
+    parse_positive_amount(amount, "Savings amount")
   end
 
   def find_goal(goal_number)
@@ -227,13 +209,5 @@ class SavingsGoalManager
   def save_goals
     FileUtils.mkdir_p(File.dirname(store_path))
     File.write(store_path, "#{JSON.pretty_generate(goals.map(&:to_h))}\n")
-  end
-
-  def format_amount(amount)
-    format("$%.2f", amount)
-  end
-
-  def format_percentage(percentage)
-    format("%.2f%%", percentage)
   end
 end

@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Shared setup required by every test file: loads Minitest and the app,
+# and turns on coverage tracking when COVERAGE=true.
+
 if ENV["COVERAGE"] == "true"
   require "coverage"
   Coverage.start

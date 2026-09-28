@@ -1,7 +1,7 @@
 require "bigdecimal"
 require "date"
 
-# One expense that the user entered. The amount is a BigDecimal, not a normal
+# Represents one recorded expense. Amount is a BigDecimal, not a normal
 # decimal number, so that money values stay exact.
 class Expense
   attr_reader :category, :amount, :date

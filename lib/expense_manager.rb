@@ -3,10 +3,13 @@ require "date"
 require "fileutils"
 require "json"
 require_relative "expense"
+require_relative "money_helpers"
 
-# Holds the expenses and does the work on them: checking input, adding,
-# listing, reporting, and saving to and loading from the JSON file.
+# Validates, adds, lists, and reports on expenses, and saves them to and
+# loads them from the JSON file.
 class ExpenseManager
+  include MoneyHelpers
+
   DEFAULT_CATEGORIES = %w[Food Transport Housing Utilities Health Education Entertainment
                           Other].freeze
   DEFAULT_STORE_PATH = File.expand_path("../data/expenses.json", __dir__)
@@ -186,6 +189,9 @@ class ExpenseManager
     return visible
   end
 
+  # Switches to the bigger scale only when a category goes over 200, so a
+  # normal day is not squashed onto the same axis as a day with one big
+  # expense.
   def graph_scale(totals)
     highest_amount = BigDecimal("0")
     index = 0
@@ -240,17 +246,6 @@ class ExpenseManager
   end
 
   def validate_amount(amount)
-    value = amount.to_s.strip
-    raise ArgumentError, "Expense amount is required." if value.empty?
-
-    begin
-      parsed_amount = BigDecimal(value)
-    rescue ArgumentError
-      raise ArgumentError, "Expense amount must be a valid number."
-    end
-
-    raise ArgumentError, "Expense amount must be greater than zero." unless parsed_amount.positive?
-
-    parsed_amount
+    parse_positive_amount(amount, "Expense amount")
   end
 end

@@ -1,6 +1,7 @@
 require "bigdecimal"
 
-# Stores one savings target and the amount needed each day to reach it.
+# Represents one savings goal: its target amount, days, and progress
+# saved so far.
 class SavingsGoal
   attr_reader :target_amount, :days, :daily_amount, :saved_amount
 
@@ -8,6 +9,8 @@ class SavingsGoal
     @target_amount = target_amount
     @days = days
     @saved_amount = saved_amount
+    # Rounds up so daily_amount times days is always enough to reach the
+    # target, even if that means saving a cent or two extra on the last day.
     @daily_amount = (target_amount / days).round(2, BigDecimal::ROUND_CEILING)
   end
 

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Unit tests for the SavingsGoal class.
+
 require_relative "test_helper"
 
 class SavingsGoalTest < Minitest::Test

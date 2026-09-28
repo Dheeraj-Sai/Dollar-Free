@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Acceptance tests: run every main menu option end to end through the
+# real MainMenu and its managers, not stand-ins.
+
 require_relative "test_helper"
 
 class ApplicationTest < Minitest::Test
@@ -52,6 +55,29 @@ class ApplicationTest < Minitest::Test
     new_menu(input: input, output: output).run
 
     assert_includes output.string, "Invalid option. Please enter a number from 1 to 8."
+    assert_includes output.string, "Expense Tracker Signing OFF!!!"
+  end
+
+  def test_user_can_view_expenses_from_the_main_menu
+    input = StringIO.new("1\nFood\n15.50\n2\n8\n")
+    output = StringIO.new
+
+    new_menu(input: input, output: output).run
+
+    assert_includes output.string, "Your Expenses"
+    assert_includes output.string, "Food - 15.5"
+    assert_includes output.string, "Expense Tracker Signing OFF!!!"
+  end
+
+  def test_user_can_view_the_daily_report_from_the_main_menu
+    input = StringIO.new("1\nFood\n15.50\n3\n8\n")
+    output = StringIO.new
+
+    new_menu(input: input, output: output).run
+
+    assert_includes output.string, "Daily Report for #{Date.today}"
+    assert_includes output.string, "Food - 15.5"
+    assert_includes output.string, "Total spent: 15.5"
     assert_includes output.string, "Expense Tracker Signing OFF!!!"
   end
 

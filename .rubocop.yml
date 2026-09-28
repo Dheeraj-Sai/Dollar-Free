@@ -19,6 +19,12 @@ Style/FrozenStringLiteralComment:
 Style/RedundantReturn:
   Enabled: false
 
+# We only put a comment above a class when it explains something the code
+# does not already say. This check wants one on every class regardless of
+# whether it would add anything, so the team turned it off.
+Style/Documentation:
+  Enabled: false
+
 # The display and report methods use plain "while" loops so they are easy to
 # follow while learning Ruby. That makes them a few lines longer than RuboCop
 # prefers, which the team accepted.

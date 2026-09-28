@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Unit tests for FinancialHealthManager: the budget and the Financial
+# Health submenu.
+
 require_relative "test_helper"
 
 class FinancialHealthManagerTest < Minitest::Test

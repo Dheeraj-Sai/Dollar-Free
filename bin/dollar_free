@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# Starts Dollar Free by building the main menu and running it.
+
 require_relative "../lib/main_menu"
 
 MainMenu.new.run

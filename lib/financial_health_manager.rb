@@ -2,9 +2,13 @@ require "bigdecimal"
 require "fileutils"
 require "json"
 require_relative "financial_health"
+require_relative "money_helpers"
 
-# Manages the user budget, persists it to JSON, and shows the financial health menu.
+# Manages the user's budget, saves it to JSON, and shows the Financial
+# Health submenu and report.
 class FinancialHealthManager
+  include MoneyHelpers
+
   DEFAULT_STORE_PATH = File.expand_path("../data/budget.json", __dir__)
 
   attr_reader :expense_manager, :savings_goal_manager, :store_path, :budget
@@ -133,18 +137,7 @@ class FinancialHealthManager
   end
 
   def validate_budget(amount)
-    value = amount.to_s.strip
-    raise ArgumentError, "Budget amount is required." if value.empty?
-
-    begin
-      parsed = BigDecimal(value)
-    rescue ArgumentError
-      raise ArgumentError, "Budget amount must be a valid number."
-    end
-
-    raise ArgumentError, "Budget amount must be greater than zero." unless parsed.positive?
-
-    parsed
+    parse_positive_amount(amount, "Budget amount")
   end
 
   def load_budget
@@ -160,13 +153,5 @@ class FinancialHealthManager
   def save_budget
     FileUtils.mkdir_p(File.dirname(store_path))
     File.write(store_path, "#{JSON.pretty_generate({ 'budget' => budget.to_s('F') })}\n")
-  end
-
-  def format_amount(amount)
-    format("$%.2f", amount)
-  end
-
-  def format_percentage(percentage)
-    format("%.2f%%", percentage)
   end
 end

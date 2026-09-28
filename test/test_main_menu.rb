@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Unit tests for MainMenu, using stand-in managers to check it routes to
+# the right one for each option.
+
 require_relative "test_helper"
 
 class MainMenuTest < Minitest::Test

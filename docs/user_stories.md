@@ -1,9 +1,7 @@
 # User Stories
+This file lists the stories for Dollar Free.
 
-This file lists the stories for Dollar Free. Stories marked **Done** are in the
-current version of the program. The rest are planned for later work.
-
-## 1. Main menu — Done (Essential)
+## 1. Main menu (Essential)
 
 As a user, I want to see a main menu when I open Dollar Free so that I can
 choose what I want to do.
@@ -15,7 +13,7 @@ Acceptance criteria:
 - Option 8 closes the program.
 - A wrong option shows an error and returns to the menu.
 
-## 2. Add an expense — Done (Essential)
+## 2. Add an expense (Essential)
 
 As a user, I want to add an expense category and amount so that I can track
 what I spend.
@@ -27,7 +25,7 @@ Acceptance criteria:
 - The expense is saved to a file, so it is still there the next time the
   program is opened.
 
-## 3. Invalid expense input — Done (Essential / Sad Path)
+## 3. Invalid expense input (Essential / Sad Path)
 
 As a user, I want to get a useful message when my expense input is wrong so
 that I know how to fix it.
@@ -39,7 +37,7 @@ Acceptance criteria:
 - Missing or unsupported categories are rejected.
 - The program does not crash after invalid input.
 
-## 4. View expenses — Done (Essential)
+## 4. View Expense History (Essential)
 
 As a user, I want to view the expenses I have entered so that I can review my
 spending.
@@ -51,9 +49,9 @@ Acceptance criteria:
 - Each expense is numbered and shows its date, category, and amount.
 - A clear message is shown if there are no expenses yet.
 
-## 5. Daily report — Done (Essential)
+## 5. Generate Daily Report (Essential)
 
-As a user, I want to see a daily total so that I know how much I spent today.
+As a user, I want to see a daily report of the expenses so that I can know how much I spent today.
 
 Acceptance criteria:
 
@@ -63,7 +61,7 @@ Acceptance criteria:
 - The report shows the total spent that day.
 - A clear message is shown if nothing was spent that day.
 
-## 6. Savings goal — Done
+## 6. Savings goal — Done (Optional)
 
 As a student, I want to set savings goals so that I know how much I need to
 save each day to reach my targets.
@@ -81,7 +79,7 @@ Acceptance criteria:
 - Invalid goal amounts, days, progress amounts, goal numbers, and submenu
   choices show useful error messages.
 
-## 7. Financial health — Done (Optional)
+## 7. Financial health (Optional)
 
 As a student, I want to view my financial health so that I can understand how
 much money I have spent and how much I have remaining in my budget.
@@ -103,7 +101,7 @@ Acceptance criteria:
 - Invalid budget amounts (blank, text, zero, negative) show useful errors.
 - I can return to the main menu from the Financial Health submenu.
 
-## 8. Spending graph — Done (Optional)
+## 8. Generate Spending Graph (Optional)
 
 As a user, I want to see spending by category in a terminal graph so that I
 can quickly compare where my money goes on a given day.
@@ -119,20 +117,7 @@ Acceptance criteria:
 - A clear message is shown if nothing was spent on the chosen date.
 - A blank or badly formatted date shows a useful error message.
 
-## 9. Expenses are kept after closing the app — Done (Essential)
-
-As a user, I want my expenses to still be there when I reopen Dollar Free so
-that I do not lose my records every time I close it.
-
-Acceptance criteria:
-
-- An expense is saved to a file as soon as it is added.
-- The saved expenses are loaded again when the program starts.
-- The first time the program runs, when there is no saved file yet, it starts
-  with an empty list and does not show an error.
-- An expense that was rejected is not saved.
-
-## 10. Savings progress — Done (Optional)
+## 9. Savings Progress Visualization (Optional)
 
 As a student, I want to see a progress bar for a savings goal so that I can
 tell at a glance how close I am to reaching it.
@@ -146,3 +131,18 @@ Acceptance criteria:
   100% saved.
 - A clear message is shown if no savings goals have been added yet.
 - An invalid goal number shows a useful error message.
+
+## 10. Integration Testing (Essential)
+
+As a developer, I want automated tests that run every feature through the
+main menu together so that I can trust the whole app works correctly for the
+user, not just its individual pieces.
+
+Acceptance criteria:
+
+- Every main menu option, 1 through 8, has a test that runs through the real
+  MainMenu, ExpenseManager, SavingsGoalManager, and FinancialHealthManager
+  together, not stand-ins.
+- The invalid menu choice is also tested this way.
+- The tests use temporary files so the real data files are never touched.
+- The tests pass every time they are run, in any order.

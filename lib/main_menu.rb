@@ -2,8 +2,8 @@ require_relative "expense_manager"
 require_relative "financial_health_manager"
 require_relative "savings_goal_manager"
 
-# Shows the menu and sends the user to the right feature. It does not do any
-# expense work itself, it only asks ExpenseManager to do it.
+# Shows the main menu and routes each option to the right manager; it
+# has no expense, goal, or budget logic of its own.
 class MainMenu
   def initialize(input: $stdin, output: $stdout, expense_manager: ExpenseManager.new,
                  savings_goal_manager: SavingsGoalManager.new,

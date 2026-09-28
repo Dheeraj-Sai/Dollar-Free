@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Unit tests for SavingsGoalManager: goals, progress, the progress bar,
+# and its submenu.
+
 require_relative "test_helper"
 
 class SavingsGoalManagerTest < Minitest::Test
