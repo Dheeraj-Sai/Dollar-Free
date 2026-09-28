@@ -139,25 +139,42 @@ Choose option `4` to open the Financial Health menu. From there, choose `1` to
 view your financial health report, `2` to set or update your budget, or `3` to
 return to the main menu.
 
-The report compares your total recorded expenses against your budget:
+The report evaluates your finances using a student-friendly 4-pillar Health Index (Total 100 pts: Budget Control 35 pts, Spending Pace 30 pts, Category Balance 20 pts, and Savings Momentum 15 pts) along with budget runway forecasting:
 
 ```text
-Financial Health Report
-Budget: $500.00
-Total Spent: $175.50
-Remaining: $324.50 (64.90% remaining)
-Health Score: 65/100
-Status: Caution (Moderate)
-Advice: Moderate spending (35.10% spent). Keep an eye on upcoming expenses.
+Student Financial Health Report
+Overall Health Score: 85/100 [ Healthy (Excellent) ]
+Budget: $500.00 | Total Spent: $150.00 | Remaining: $350.00 (70.00% remaining)
+
+Score Breakdown:
+- Budget Control: 25/35
+- Burn Rate & Pace: 0/30 (Daily: $150.00 vs Safe: $16.67)
+- Category Balance: 13/20 (Wants: 53.33%)
+- Savings Momentum: 6/15
+
+Insights & Forecast:
+- Runway: At your current pace, your remaining budget will last 2 days.
+- Top Expense: Entertainment ($80.00 - 53.33% of spending).
+- Advice: Slow down! Aim to keep daily spending below $16.67.
 ```
 
-If spending exceeds the budget, the app clearly alerts you and shows the exact
-exceeded amount:
+If spending exceeds the budget, the app clearly alerts you, marks the health score as Critical, and shows the exceeded amount:
 
 ```text
-Remaining: -$60.00 (Exceeded by $60.00)
-Health Score: 0/100
-Status: Over Budget (Exceeded)
+Student Financial Health Report
+Overall Health Score: 0/100 [ Critical (Needs Attention) ]
+Budget: $200.00 | Total Spent: $250.00 | Remaining: -$50.00 (Exceeded by $50.00)
+
+Score Breakdown:
+- Budget Control: 0/35
+- Burn Rate & Pace: 0/30 (Daily: $250.00 vs Safe: $6.67)
+- Category Balance: 20/20 (Wants: 0.00%)
+- Savings Momentum: 0/15
+
+Insights & Forecast:
+- Runway: Exhausted! You have exceeded your budget by $50.00.
+- Top Expense: Other ($250.00 - 100.00% of spending).
+- Advice: Alert! Budget exceeded. Freeze discretionary spending immediately to recover.
 ```
 
 The budget is saved in `data/budget.json`, so it persists across sessions.

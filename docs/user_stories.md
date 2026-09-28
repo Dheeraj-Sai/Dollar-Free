@@ -94,6 +94,10 @@ Acceptance criteria:
 - If no budget has been set yet, the app prompts me to enter one.
 - The report compares my budget with total expenses and displays the remaining
   budget (or exceeded amount), health score (0 to 100), status, and advice.
+- The health score evaluates 4 pillars: Budget Control (35 pts), Spending Pace
+  vs. safe daily allowance (30 pts), Category Balance (20 pts), and Savings
+  Momentum (15 pts).
+- The report forecasts budget runway days and flags top spending category leaks.
 - The app indicates when I am within budget, when I have reached my exact
   budget, or when I have exceeded it.
 - Invalid budget amounts (blank, text, zero, negative) show useful errors.

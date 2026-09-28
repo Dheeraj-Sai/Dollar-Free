@@ -71,9 +71,11 @@ whenever the user updates their budget.
   file and leave the real one alone.
 - Savings progress is entered manually because the app only records expenses.
   It does not know a user's income or the amount they actually put into savings.
-- Financial health compares total expenses directly against the user budget,
-  providing a 0-100 score and tier-based status to keep financial standing clear
-  and actionable for students.
+- Financial health evaluates a student's standing across four distinct pillars
+  (Budget Control 35 pts, Spending Pace 30 pts, Category Balance 20 pts, and
+  Savings Momentum 15 pts) along with a runway forecast, rather than just a raw
+  percentage. This provides actionable diagnostic insights while keeping the
+  scoring transparent and student-friendly.
 - FinancialHealth only calculates; it does not print or save anything. That
   is left to FinancialHealthManager, so the scoring logic can be tested
   without touching input, output, or a file.
@@ -88,7 +90,9 @@ whenever the user updates their budget.
   tracking that felt too big for this project. We replaced it with Savings
   Progress instead, since a progress bar reuses data the app already saves.
 
-## What the menu looks like
+## User Interface Design & Workflows
+
+### 1. Main Menu
 
 ```text
 ====== Dollar Free ======
@@ -100,5 +104,67 @@ whenever the user updates their budget.
 6. Savings Goal
 7. Savings Progress
 8. Exit
-Choose an option:
+Choose an option: 
+```
+
+### 2. Financial Health Workflow & Report Mockup
+
+```text
+Financial Health
+1. View financial health report
+2. Set or update budget
+3. Return to main menu
+Choose an option: 1
+
+Student Financial Health Report
+Overall Health Score: 85/100 [ Healthy (Excellent) ]
+Budget: $500.00 | Total Spent: $150.00 | Remaining: $350.00 (70.00% remaining)
+
+Score Breakdown:
+- Budget Control: 25/35
+- Burn Rate & Pace: 0/30 (Daily: $150.00 vs Safe: $16.67)
+- Category Balance: 13/20 (Wants: 53.33%)
+- Savings Momentum: 6/15
+
+Insights & Forecast:
+- Runway: At your current pace, your remaining budget will last 2 days.
+- Top Expense: Entertainment ($80.00 - 53.33% of spending).
+- Advice: Slow down! Aim to keep daily spending below $16.67.
+```
+
+### 3. Spending Graph Workflow Mockup
+
+```text
+Spending Graph
+Enter date (mm/dd/yyyy): 09/28/2026
+Spending Graph for 2026-09-28
+ 200 |                              
+ 190 |                              
+ ...
+  80 |                █████████████ 
+  40 | ████           █████████████ 
+  20 | ████ █████████ █████████████ 
+   0 | ---- --------- ------------- 
+       Food Transport Entertainment 
+```
+
+### 4. Savings Goals & Progress Bar Workflow Mockup
+
+```text
+Savings Goals
+1. Set a new savings goal
+2. View savings goals
+3. Add savings progress
+4. Return to main menu
+Choose an option: 2
+
+Your Savings Goals
+1. Target: $300.00 | Time: 30 days | Daily: $10.00 | Saved: $90.00 | Remaining: $210.00 | Progress: 30.00%
+2. Target: $1200.00 | Time: 60 days | Daily: $20.00 | Saved: $300.00 | Remaining: $900.00 | Progress: 25.00%
+
+# Main Menu Option 7 (Savings Progress Bar):
+Choose an option: 7
+Savings Progress
+Choose a goal number: 1
+[██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 30.00%
 ```

@@ -15,7 +15,9 @@ Acceptance criteria
    budget has been reached (100%), or when the budget has been exceeded (>100%).
 7. When the budget is exceeded, the report displays the negative remaining
    amount and explicitly shows the amount by which it was exceeded.
-8. The health score ranges from 0 to 100 based on remaining budget proportion.
+8. The health score ranges from 0 to 100 based on the 4-pillar index (Budget
+   Control 35 pts, Spending Pace 30 pts, Category Balance 20 pts, Savings
+   Momentum 15 pts) and forecasts budget runway days.
 9. Invalid budget inputs (blank, non-numeric, zero, negative) and invalid menu
    choices show useful error messages without crashing.
 10. The user can return to the main menu from the Financial Health submenu by
