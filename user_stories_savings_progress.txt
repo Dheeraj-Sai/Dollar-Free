@@ -10,5 +10,7 @@ Acceptance criteria
 2. The user picks a goal by its number.
 3. The chosen goal's percentage complete is drawn as a bar, filled up to
    that percentage.
-4. A clear message is shown when no savings goals have been added yet.
-5. An invalid goal number shows a useful error message without crashing.
+4. A short message is shown once the goal has crossed 0%, 25%, 50%, 75%, or
+   100% saved.
+5. A clear message is shown when no savings goals have been added yet.
+6. An invalid goal number shows a useful error message without crashing.

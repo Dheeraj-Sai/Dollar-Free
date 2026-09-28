@@ -138,5 +138,7 @@ Acceptance criteria:
 - Choosing option 7 lists the existing savings goals and asks for a goal
   number.
 - The chosen goal's percentage complete is drawn as a filled and unfilled bar.
+- A short message is shown once the goal has crossed 0%, 25%, 50%, 75%, or
+  100% saved.
 - A clear message is shown if no savings goals have been added yet.
 - An invalid goal number shows a useful error message.

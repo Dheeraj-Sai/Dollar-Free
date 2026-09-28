@@ -239,7 +239,9 @@ still available when the app is opened again.
 
 Choose option `7` to see a progress bar for one of your savings goals. The
 app lists your goals, asks for a goal number, and then draws a bar that fills
-up based on how much of that goal has been saved so far.
+up based on how much of that goal has been saved so far, with a small `▶`
+marker sitting right at the edge of the filled part. It also prints a short
+message once the goal crosses 25%, 50%, 75%, or 100% saved.
 
 ```text
 Choose an option: 7
@@ -247,7 +249,8 @@ Savings Progress
 Your Savings Goals
 1. Target: $300.00 | Time: 30 days | Daily: $10.00 | Saved: $165.00 | Remaining: $135.00 | Progress: 55.00%
 Choose a goal number: 1
-[███████████████████████████████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 55.00%
+[███████████████████████████████████████████████████████▶░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 55.00%
+You've reached the halfway point of your goal. Keep up the great work!
 ```
 
 ## Where the expenses are saved

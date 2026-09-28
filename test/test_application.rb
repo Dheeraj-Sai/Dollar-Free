@@ -114,9 +114,12 @@ class ApplicationTest < Minitest::Test
 
     new_menu(input: input, output: output).run
 
-    expected_bar = "[#{'█' * 55}#{'░' * 45}] 55.00%"
+    expected_bar = "[#{'█' * 55}▶#{'░' * 44}] 55.00%"
+
+    message = "You've reached the halfway point of your goal. Keep up the great work!"
 
     assert_includes output.string, "Savings Progress"
     assert_includes output.string, expected_bar
+    assert_includes output.string, message
   end
 end

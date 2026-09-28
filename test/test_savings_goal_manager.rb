@@ -195,11 +195,84 @@ class SavingsGoalManagerTest < Minitest::Test
 
     goal = @manager.prompt_for_progress_bar(input: input, output: output)
 
-    expected_bar = "[#{'█' * 55}#{'░' * 45}] 55.00%"
+    expected_bar = "[#{'█' * 55}▶#{'░' * 44}] 55.00%"
+
+    message = "You've reached the halfway point of your goal. Keep up the great work!"
 
     assert_equal BigDecimal("165"), goal.saved_amount
     assert_includes output.string, "Savings Progress"
     assert_includes output.string, expected_bar
+    assert_includes output.string, message
+  end
+
+  def test_prompt_for_progress_bar_shows_a_milestone_message_at_zero_percent
+    @manager.add_goal(target_amount: "100", days: "10")
+    output = StringIO.new
+
+    @manager.prompt_for_progress_bar(input: StringIO.new("1\n"), output: output)
+
+    message = "No progress yet. Add your first savings to get started!"
+
+    assert_includes output.string, message
+  end
+
+  def test_prompt_for_progress_bar_shows_no_milestone_message_below_twenty_five_percent
+    @manager.add_goal(target_amount: "100", days: "10")
+    @manager.add_progress(goal_number: "1", amount: "20")
+    output = StringIO.new
+
+    @manager.prompt_for_progress_bar(input: StringIO.new("1\n"), output: output)
+
+    refute_includes output.string, "No progress yet"
+    refute_includes output.string, "You've saved a quarter"
+  end
+
+  def test_prompt_for_progress_bar_shows_a_milestone_message_at_twenty_five_percent
+    @manager.add_goal(target_amount: "100", days: "10")
+    @manager.add_progress(goal_number: "1", amount: "25")
+    output = StringIO.new
+
+    @manager.prompt_for_progress_bar(input: StringIO.new("1\n"), output: output)
+
+    message = "You've saved a quarter of your goal. Keep up the steady progress!"
+
+    assert_includes output.string, message
+  end
+
+  def test_prompt_for_progress_bar_shows_a_milestone_message_at_fifty_percent
+    @manager.add_goal(target_amount: "100", days: "10")
+    @manager.add_progress(goal_number: "1", amount: "50")
+    output = StringIO.new
+
+    @manager.prompt_for_progress_bar(input: StringIO.new("1\n"), output: output)
+
+    message = "You've reached the halfway point of your goal. Keep up the great work!"
+
+    assert_includes output.string, message
+  end
+
+  def test_prompt_for_progress_bar_shows_a_milestone_message_at_seventy_five_percent
+    @manager.add_goal(target_amount: "100", days: "10")
+    @manager.add_progress(goal_number: "1", amount: "75")
+    output = StringIO.new
+
+    @manager.prompt_for_progress_bar(input: StringIO.new("1\n"), output: output)
+
+    message = "You've saved three quarters of your goal. You are almost at the finish line!"
+
+    assert_includes output.string, message
+  end
+
+  def test_prompt_for_progress_bar_shows_a_milestone_message_at_one_hundred_percent
+    @manager.add_goal(target_amount: "100", days: "10")
+    @manager.add_progress(goal_number: "1", amount: "100")
+    output = StringIO.new
+
+    @manager.prompt_for_progress_bar(input: StringIO.new("1\n"), output: output)
+
+    message = "You've reached the full amount of your goal. Great job on completing it!"
+
+    assert_includes output.string, message
   end
 
   def test_prompt_for_progress_bar_explains_when_there_are_no_goals

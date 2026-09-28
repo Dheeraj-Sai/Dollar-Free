@@ -52,8 +52,11 @@
 - Savings progress
   - list the existing goals and ask for a goal number
   - draw a bar using the goal's percentage complete
+  - show a milestone message once the goal crosses 0%, 25%, 50%, 75%, or
+    100% saved
   - reused the goal lookup and validation already built for adding progress
-  - tests for a normal goal, an invalid goal number, and no goals yet
+  - tests for a normal goal, each milestone message, an invalid goal number,
+    and no goals yet
 
 # To do
 

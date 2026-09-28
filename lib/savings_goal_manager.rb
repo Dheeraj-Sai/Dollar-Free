@@ -118,6 +118,8 @@ class SavingsGoalManager
 
     goal = find_goal(goal_number)
     output.puts build_progress_bar(goal.progress_percentage)
+    message = milestone_message(goal.progress_percentage)
+    output.puts message if message
     goal
   rescue ArgumentError => e
     output.puts "Unable to show savings progress: #{e.message}"
@@ -126,12 +128,30 @@ class SavingsGoalManager
 
   private
 
+  def milestone_message(percentage)
+    if percentage >= 100
+      "You've reached the full amount of your goal. Great job on completing it!"
+    elsif percentage >= 75
+      "You've saved three quarters of your goal. You are almost at the finish line!"
+    elsif percentage >= 50
+      "You've reached the halfway point of your goal. Keep up the great work!"
+    elsif percentage >= 25
+      "You've saved a quarter of your goal. Keep up the steady progress!"
+    elsif percentage.zero?
+      "No progress yet. Add your first savings to get started!"
+    end
+  end
+
   def build_progress_bar(percentage)
     bar_width = 100
     filled_slots = (percentage * bar_width / 100).to_i
     empty_slots = bar_width - filled_slots
     filled_part = "█" * filled_slots
-    empty_part = "░" * empty_slots
+    empty_part = if empty_slots.positive?
+                   "▶#{'░' * (empty_slots - 1)}"
+                 else
+                   ""
+                 end
     "[#{filled_part}#{empty_part}] #{format_percentage(percentage)}"
   end
 

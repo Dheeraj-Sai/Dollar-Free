@@ -26,7 +26,8 @@ There are seven classes in lib:
 - SavingsGoalManager
   - shows the Savings Goal submenu
   - validates, saves, and loads goals and their savings progress
-  - draws the savings progress bar for a goal the user picks
+  - draws the savings progress bar for a goal the user picks, along with a
+    milestone message for how far along that goal is
 
 - SavingsGoal
   - holds one target amount, number of days, and the daily saving amount
@@ -81,12 +82,22 @@ whenever the user updates their budget.
   `█` for the filled part, and Savings Progress uses `░` for the unfilled
   part. Plain characters like `#` and `-` would also have worked, but the
   block characters look closer to a real progress bar.
+- Savings Progress marks the edge of the filled part with `▶`. We first
+  looked at the runner emoji for this, but it defaults to facing left, the
+  right-facing version is a very new character most terminals cannot show,
+  and emoji take up two columns in a terminal, which would have thrown off
+  the bracket and percentage alignment. `▶` is single-width like the other
+  bar characters and clearly points right.
 - The Spending Graph switches its y-axis from 0-200 to 0-1000 only when a
   category's total for that date goes over 200. One fixed scale would either
   waste space on a normal day or squash a day with one big expense.
 - We planned to build Achievements, but it needed badge rules and progress
   tracking that felt too big for this project. We replaced it with Savings
   Progress instead, since a progress bar reuses data the app already saves.
+- Savings Progress shows a short message once a goal crosses 0%, 25%, 50%,
+  75%, or 100% saved. It is a plain if/elsif check against the percentage
+  SavingsGoal already calculates, so it adds a bit of the recognition
+  Achievements was going for without needing any new data.
 
 ## What the menu looks like
 
