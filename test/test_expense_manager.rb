@@ -170,7 +170,7 @@ class ExpenseManagerTest < Minitest::Test
     lines = output.string.lines
     top_row = lines.find { |line| line.start_with?("1000 | ") }
 
-    assert_includes top_row, "*"
+    assert_includes top_row, "█"
   end
 
   def test_spending_graph_message_when_nothing_was_spent_today

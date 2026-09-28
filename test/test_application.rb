@@ -107,4 +107,16 @@ class ApplicationTest < Minitest::Test
     assert_includes output.string, "Category Balance:"
     assert_includes output.string, "Runway:"
   end
+
+  def test_user_can_view_savings_progress_from_the_main_menu
+    input = StringIO.new("6\n1\n300\n30\n3\n1\n165\n4\n7\n1\n8\n")
+    output = StringIO.new
+
+    new_menu(input: input, output: output).run
+
+    expected_bar = "[#{'█' * 55}#{'░' * 45}] 55.00%"
+
+    assert_includes output.string, "Savings Progress"
+    assert_includes output.string, expected_bar
+  end
 end

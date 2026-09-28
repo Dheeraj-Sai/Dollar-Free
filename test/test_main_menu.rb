@@ -26,11 +26,16 @@ class MainMenuTest < Minitest::Test
   end
 
   class SavingsGoalManagerSpy
-    attr_reader :input, :output
+    attr_reader :input, :output, :progress_bar_input, :progress_bar_output
 
     def savings_goal_menu(input:, output:)
       @input = input
       @output = output
+    end
+
+    def prompt_for_progress_bar(input:, output:)
+      @progress_bar_input = input
+      @progress_bar_output = output
     end
   end
 
@@ -62,7 +67,7 @@ class MainMenuTest < Minitest::Test
     @menu.display_menu
 
     expected_options = ["Add Expense", "View Expenses", "Daily Report", "Financial Health",
-                        "Spending Graph", "Savings Goal", "Achievements", "Exit"]
+                        "Spending Graph", "Savings Goal", "Savings Progress", "Exit"]
     expected_options.each { |option| assert_includes @output.string, option }
     assert_includes @output.string, "====== Dollar Free ======"
     assert_includes @output.string, "Choose an option:"
@@ -102,9 +107,10 @@ class MainMenuTest < Minitest::Test
     assert_same @output, @savings_goal_manager.output
   end
 
-  def test_option_seven_shows_achievements_message
+  def test_option_seven_opens_savings_progress
     assert @menu.process_selection("7")
-    assert_includes @output.string, "Achievements is not available yet."
+    assert_same @input, @savings_goal_manager.progress_bar_input
+    assert_same @output, @savings_goal_manager.progress_bar_output
   end
 
   def test_option_eight_exits

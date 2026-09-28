@@ -105,7 +105,35 @@ class SavingsGoalManager
     nil
   end
 
+  def prompt_for_progress_bar(input: $stdin, output: $stdout)
+    if goals.empty?
+      output.puts "No savings goals have been added yet."
+      return nil
+    end
+
+    output.puts "Savings Progress"
+    display_goals(output: output)
+    output.print "Choose a goal number: "
+    goal_number = input.gets
+
+    goal = find_goal(goal_number)
+    output.puts build_progress_bar(goal.progress_percentage)
+    goal
+  rescue ArgumentError => e
+    output.puts "Unable to show savings progress: #{e.message}"
+    nil
+  end
+
   private
+
+  def build_progress_bar(percentage)
+    bar_width = 100
+    filled_slots = (percentage * bar_width / 100).to_i
+    empty_slots = bar_width - filled_slots
+    filled_part = "█" * filled_slots
+    empty_part = "░" * empty_slots
+    "[#{filled_part}#{empty_part}] #{format_percentage(percentage)}"
+  end
 
   def display_menu(output:)
     output.puts "\nSavings Goals"

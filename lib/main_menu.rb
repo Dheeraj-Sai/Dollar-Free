@@ -33,7 +33,7 @@ class MainMenu
     @output.puts "4. Financial Health"
     @output.puts "5. Spending Graph"
     @output.puts "6. Savings Goal"
-    @output.puts "7. Achievements"
+    @output.puts "7. Savings Progress"
     @output.puts "8. Exit"
     @output.print "Choose an option: "
   end
@@ -53,7 +53,7 @@ class MainMenu
     when "6"
       @savings_goal_manager.savings_goal_menu(input: @input, output: @output)
     when "7"
-      @output.puts "Achievements is not available yet."
+      @savings_goal_manager.prompt_for_progress_bar(input: @input, output: @output)
     when "8", ""
       @output.puts "Expense Tracker Signing OFF!!!"
       return false

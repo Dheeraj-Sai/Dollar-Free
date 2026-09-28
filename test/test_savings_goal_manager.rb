@@ -187,6 +187,41 @@ class SavingsGoalManagerTest < Minitest::Test
     assert_includes output.string, "Unable to add savings progress: Savings amount must be a valid number."
   end
 
+  def test_prompt_for_progress_bar_shows_the_bar_for_the_chosen_goal
+    @manager.add_goal(target_amount: "300", days: "30")
+    @manager.add_progress(goal_number: "1", amount: "165")
+    input = StringIO.new("1\n")
+    output = StringIO.new
+
+    goal = @manager.prompt_for_progress_bar(input: input, output: output)
+
+    expected_bar = "[#{'█' * 55}#{'░' * 45}] 55.00%"
+
+    assert_equal BigDecimal("165"), goal.saved_amount
+    assert_includes output.string, "Savings Progress"
+    assert_includes output.string, expected_bar
+  end
+
+  def test_prompt_for_progress_bar_explains_when_there_are_no_goals
+    output = StringIO.new
+
+    result = @manager.prompt_for_progress_bar(output: output)
+
+    assert_nil result
+    assert_includes output.string, "No savings goals have been added yet."
+  end
+
+  def test_prompt_for_progress_bar_rejects_an_invalid_goal_number
+    @manager.add_goal(target_amount: "100", days: "10")
+    input = StringIO.new("2\n")
+    output = StringIO.new
+
+    result = @manager.prompt_for_progress_bar(input: input, output: output)
+
+    assert_nil result
+    assert_includes output.string, "Unable to show savings progress: Goal number must be between 1 and 1."
+  end
+
   def test_loads_empty_store_file_as_empty_goals
     File.write(@store.path, "   \n")
     manager = SavingsGoalManager.new(store_path: @store.path)

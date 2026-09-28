@@ -7,25 +7,25 @@ how they are spending money.
 ## What is done so far
 
 Right now, the app has a main menu, Add Expense, View Expenses, Daily Report,
-Savings Goals, and Financial Health.
+Financial Health, Spending Graph, Savings Goals, and Savings Progress.
 
 - The main menu is shown when the program starts.
 - Option 1 lets the user add an expense.
 - Option 2 shows all the expenses that have been added.
 - Option 3 shows only today's expenses and the total spent today.
 - Option 4 lets the user view financial health and manage their budget.
+- Option 5 shows a spending graph for a date the user enters.
 - Option 6 lets the user add and view daily savings goals.
+- Option 7 shows a progress bar for a savings goal the user picks.
 - The amount has to be a number bigger than 0.
 - The category has to be one of the categories in the program.
 - If the user enters a wrong menu number, the app shows an error message.
 - Expenses are saved in a file, so they are still there the next time the
   app is opened.
 
-The main features planned for the project are Add Expense, View Expenses,
-Daily Report, Financial Health, Spending Graph, Savings Goal, and Achievements.
-
-The other menu options are there already, but they are not built yet. They
-will say that the feature is not available yet.
+The main features planned for the project were Add Expense, View Expenses,
+Daily Report, Financial Health, Spending Graph, Savings Goal, and Savings
+Progress. All of them are now built.
 
 ## How to run it
 
@@ -75,12 +75,11 @@ When the app starts, this is the menu:
 4. Financial Health
 5. Spending Graph
 6. Savings Goal
-7. Achievements
+7. Savings Progress
 8. Exit
 ```
 
-Type a number and press Enter. For now, `1`, `2`, `3`, `4`, `6`, and `8` are the
-options that do something.
+Type a number and press Enter. Every option from `1` to `8` does something.
 
 ## Adding an expense
 
@@ -167,6 +166,21 @@ This goal is now 25.00% complete.
 
 Goals and their progress are saved in `data/savings_goals.json`, so they are
 still available when the app is opened again.
+
+## Savings progress
+
+Choose option `7` to see a progress bar for one of your savings goals. The
+app lists your goals, asks for a goal number, and then draws a bar that fills
+up based on how much of that goal has been saved so far.
+
+```text
+Choose an option: 7
+Savings Progress
+Your Savings Goals
+1. Target: $300.00 | Time: 30 days | Daily: $10.00 | Saved: $165.00 | Remaining: $135.00 | Progress: 55.00%
+Choose a goal number: 1
+[███████████████████████████████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 55.00%
+```
 
 ## Financial health
 
@@ -280,8 +294,7 @@ user_stories_financial_health.txt financial health story and acceptance criteria
 
 ## Features to add later
 
-- Spending graph
-- Achievements
+All of the originally planned features have been built.
 
 ## Known limitations
 
@@ -293,8 +306,6 @@ user_stories_financial_health.txt financial health story and acceptance criteria
 - The date of an expense is always the day it was entered. There is no way to
   add an expense for an earlier day.
 - The Daily Report only covers today. There is no weekly or monthly report.
-- Spending Graph and Achievements are not built yet. Those menu options say
-  that the feature is not available.
 - If the saved file is damaged, the app stops with an error instead of opening.
   This is on purpose, so that real records are not quietly replaced.
 

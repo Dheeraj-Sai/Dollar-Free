@@ -218,7 +218,7 @@ class ExpenseManager
 
   def bar_symbol(amount, row_value, width)
     capped_amount = amount > 1000 ? BigDecimal("1000") : amount
-    return "*" * width if capped_amount >= row_value
+    return "█" * width if capped_amount >= row_value
 
     return " " * width
   end
