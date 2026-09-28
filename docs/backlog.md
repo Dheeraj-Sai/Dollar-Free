@@ -38,8 +38,9 @@
 - Financial health
   - set and update user budget and save to data/budget.json
   - compare budget against total expenses from ExpenseManager
-  - calculate remaining amount, spending percentage, and health score (0 to 100)
-  - report status tiers and give practical student advice
+  - evaluate 4 distinct pillars: Budget Control (35 pts), Spending Pace (30 pts), Category Balance (20 pts), and Savings Momentum (15 pts)
+  - forecast budget runway days and identify top spending category leak
+  - report status tiers (Healthy, Moderate, Caution, Critical) and give practical student advice
 
 - Spending graph
   - ask for a date in mm/dd/yyyy format and validate it
@@ -57,6 +58,10 @@
   - reused the goal lookup and validation already built for adding progress
   - tests for a normal goal, each milestone message, an invalid goal number,
     and no goals yet
+
+# In Progress
+
+None currently (all planned work items completed, tested, and shipped).
 
 # To do
 
